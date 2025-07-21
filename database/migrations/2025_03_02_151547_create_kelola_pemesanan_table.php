@@ -13,14 +13,19 @@ return new class extends Migration
     {
         Schema::create('kelola_pemesanan', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('penghuni_id'); // Relasi ke tabel 'users' untuk penghuni
-            $table->unsignedBigInteger('kamar_id'); // Relasi ke tabel 'kelola_kamar' untuk kamar
-            $table->date('tanggal_sewa'); // Tanggal sewa
-            $table->string('bukti_pembayaran')->nullable(); // Bukti pembayaran
-            $table->enum('status', ['Menunggu', 'Diterima', 'Ditolak']); // Status pemesanan
+            $table->string('kode_booking')->unique();
+            $table->unsignedBigInteger('penghuni_id');
+            $table->unsignedBigInteger('kamar_id');
+            $table->date('tanggal_sewa');
+            $table->string('bukti_pembayaran')->nullable();
+            $table->enum('status', ['Menunggu', 'Diterima', 'Ditolak']);
+            $table->string('jumlah_penghuni');
+            $table->string('tipe_pembayaran');
+            $table->decimal('total_pembayaran');
+
             $table->timestamps();
 
-            // Menambahkan foreign key constraint untuk penghuni dan kamar
+
             $table->foreign('penghuni_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('kamar_id')->references('id')->on('kelola_kamar')->onDelete('cascade');
         });

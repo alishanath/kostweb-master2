@@ -3,10 +3,10 @@
 @section('content')
 
     <div class="container">
-        <div class="form-box">
+        <div class="form-box" style="max-height: 80vh; overflow-y: auto;">
             <h2 class="text-center">Register</h2>
             <p class="text-center"><a href="{{ route('auth.user.login') }}">Sudah Registrasi? Klik Disini Untuk Login</a></p>
-            <form method="POST" action="{{ route('auth.user.register') }}">
+            <form method="POST" action="{{ route('auth.user.register') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label>Nama Lengkap</label>
@@ -52,6 +52,14 @@
                     <label>Alamat</label>
                     <textarea name="alamat" class="form-control" rows="3" required>{{ old('alamat') }}</textarea>
                     @error('alamat')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label>Upload KTP (wajib diisi)</label>
+                    <input type="file" name="ktp" class="form-control" accept="image/*" required>
+                    @error('ktp')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>

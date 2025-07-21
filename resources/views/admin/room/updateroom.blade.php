@@ -16,7 +16,6 @@
     <span class="sr-only">Edit Kamar</span>
 </button>
 
-
 <!-- Modal Edit Kamar -->
 <div id="editKamarModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50 hidden">
     <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md mx-4 max-h-[90vh] overflow-y-auto">
@@ -55,17 +54,57 @@
             <!-- Fasilitas -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Fasilitas</label>
-                <div class="mt-2 grid grid-cols-2 gap-3">
-                    @foreach (['AC', 'WiFi', 'TV', 'Kulkas', 'kipas'] as $index => $fasilitas)
-                        <div class="flex items-center">
-                            <input type="checkbox" id="edit_fasilitas{{ $index + 1 }}" name="fasilitas[]"
-                                value="{{ $fasilitas }}"
-                                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                            <label for="edit_fasilitas{{ $index + 1 }}" class="ml-2 block text-sm text-gray-900">
-                                {{ $fasilitas === 'kipas' ? 'Kipas Angin' : $fasilitas }}
-                            </label>
-                        </div>
-                    @endforeach
+                <div class="mt-2 flex flex-wrap gap-4">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="edit_fasilitas1" name="fasilitas[]" value="Kamar Mandi Dalam"
+                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <label for="edit_fasilitas1" class="ml-2 block text-sm text-gray-900">Kamar Mandi Dalam</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="edit_fasilitas2" name="fasilitas[]" value="Kamar Mandi Luar"
+                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <label for="edit_fasilitas2" class="ml-2 block text-sm text-gray-900">Kamar Mandi Luar</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="edit_fasilitas3" name="fasilitas[]" value="Jendela"
+                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <label for="edit_fasilitas3" class="ml-2 block text-sm text-gray-900">Jendela</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="edit_fasilitas4" name="fasilitas[]" value="Kasur"
+                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <label for="edit_fasilitas4" class="ml-2 block text-sm text-gray-900">Kasur</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="edit_fasilitas5" name="fasilitas[]" value="Bantal"
+                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <label for="edit_fasilitas5" class="ml-2 block text-sm text-gray-900">Bantal</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="edit_fasilitas6" name="fasilitas[]" value="Lemari"
+                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <label for="edit_fasilitas6" class="ml-2 block text-sm text-gray-900">Lemari</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="edit_fasilitas7" name="fasilitas[]" value="Laci"
+                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <label for="edit_fasilitas7" class="ml-2 block text-sm text-gray-900">Laci</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="edit_fasilitas8" name="fasilitas[]" value="Rak Sepatu"
+                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <label for="edit_fasilitas8" class="ml-2 block text-sm text-gray-900">Rak Sepatu</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="edit_fasilitas9" name="fasilitas[]" value="Kipas Angin"
+                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <label for="edit_fasilitas9" class="ml-2 block text-sm text-gray-900">Kipas Angin</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="edit_fasilitas10" name="fasilitas[]" value="Wifi"
+                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <label for="edit_fasilitas10" class="ml-2 block text-sm text-gray-900">Wifi</label>
+                    </div>
                 </div>
             </div>
 
@@ -77,7 +116,20 @@
                     required>
                     <option value="available">Available</option>
                     <option value="booked">Booked</option>
+                </select>
+            </div>
 
+            <!-- Kapasitas -->
+            <div>
+                <label for="edit_kapasitas" class="block text-sm font-medium text-gray-700 mb-1">Kapasitas</label>
+                <select name="kapasitas" id="edit_kapasitas" required
+                    class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    <option value="">Pilih Kapasitas</option>
+                    <option value="1">1 Orang</option>
+                    <option value="2">2 Orang</option>
+                    <option value="3">3 Orang</option>
+                    <option value="4">4 Orang</option>
+                    <option value="5">5 Orang</option>
                 </select>
             </div>
 
@@ -117,9 +169,6 @@
         </form>
     </div>
 </div>
-
-<!-- Button Edit Kamar (tetap sama) -->
-<!-- Modal Edit Kamar (tetap sama) -->
 
 @push('scripts')
     <script>
@@ -169,7 +218,7 @@
                 });
             }
 
-            // Handle preview gambar (tetap sama)
+            // Handle preview gambar
             const currentImageContainer = document.getElementById('current_image_container');
             const currentImage = document.getElementById('current_image');
             const noImage = document.getElementById('no_image');
@@ -196,7 +245,33 @@
             document.body.classList.add('overflow-hidden');
         }
 
-        // Fungsi lainnya tetap sama (closeEditModal, previewEditImage, dll)
+        function previewEditImage(event) {
+            const preview = document.getElementById('preview_gambar');
+            const previewContainer = document.getElementById('preview_container');
+            const currentImageContainer = document.getElementById('current_image_container');
+            const noImage = document.getElementById('no_image');
+
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    previewContainer.classList.remove('hidden');
+                    currentImageContainer.classList.add('hidden');
+                    noImage.classList.add('hidden');
+                }
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = '#';
+                previewContainer.classList.add('hidden');
+                if (document.getElementById('current_image').src) {
+                    currentImageContainer.classList.remove('hidden');
+                    noImage.classList.add('hidden');
+                } else {
+                    noImage.classList.remove('hidden');
+                }
+            }
+        }
 
         // Perbaikan pada form submission
         document.getElementById('editKamarForm').addEventListener('submit', function(e) {
@@ -218,6 +293,7 @@
 
         document.getElementById('closeEditModalBtn').addEventListener('click', function() {
             document.getElementById('editKamarModal').classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
         });
     </script>
 @endpush

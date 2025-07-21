@@ -1,3 +1,135 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --primary-color: #2e7d32;
+    --secondary-color: #1b5e20;
+    --accent-color: #4caf50;
+    --light-bg: #f8f9fa;
+    --light-green: #e8f5e9;
+}
+
+body {
+    background-color: var(--light-bg);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border: none;
+    overflow: hidden;
+}
+
+.card-header {
+    background: linear-gradient(
+        135deg,
+        var(--primary-color),
+        var(--secondary-color)
+    );
+    color: white;
+    padding: 1.5rem;
+    border-bottom: none;
+}
+
+.room-image {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.room-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+}
+
+.btn-outline-secondary {
+    border-radius: 8px;
+    padding: 10px 25px;
+}
+
+.payment-option {
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: all 0.3s;
+    cursor: pointer;
+    background-color: var(--light-green);
+}
+
+.payment-option:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-3px);
+}
+
+.payment-option.active {
+    border-color: var(--primary-color);
+    background-color: rgba(46, 125, 50, 0.1);
+}
+
+.bank-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-right: 10px;
+}
+
+.total-cost {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.form-control,
+.form-select {
+    border-radius: 8px;
+    padding: 12px 15px;
+    border: 2px solid #e9ecef;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 0.25rem rgba(76, 175, 80, 0.25);
+}
+
+@media (max-width: 576px) {
+    .room-number {
+        font-size: 2rem;
+    }
+
+    .total-cost {
+        font-size: 1.5rem;
+    }
+}
+
+.payment-instruction {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.bank-account {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

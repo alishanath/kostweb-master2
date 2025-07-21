@@ -65,7 +65,7 @@
                             <td class="px-6 py-4">{{ $index + 1 }}</td>
                             <td class="px-6 py-4">{{ $pesanan->penghuni->nama_lengkap ?? $pesanan->penghuni->name }}</td>
                             <td class="px-6 py-4">{{ $pesanan->kamar->no_kamar ?? '-' }}</td>
-                            <td class="px-6 py-4">{{ $pesanan->tanggal_sewa }}</td>
+                            <td class="px-6 py-4">{{ \Carbon\Carbon::parse($pesanan->tanggal_sewa)->format('d-m-Y') }}</td>
                             <td class="px-6 py-4">
                                 @if ($pesanan->bukti_pembayaran)
                                     <a href="{{ asset('storage/' . $pesanan->bukti_pembayaran) }}" target="_blank"

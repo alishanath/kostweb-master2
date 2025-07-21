@@ -14,11 +14,20 @@ class KelolaPemesanan extends Model
 
     // Menentukan kolom-kolom yang bisa diisi mass-assignment
     protected $fillable = [
+        'kode_booking',  // Kode unik untuk pemesanan
         'penghuni_id',  // ID Penghuni yang melakukan pemesanan
         'kamar_id',     // ID Kamar yang dipesan
         'tanggal_sewa', // Tanggal sewa kamar
         'bukti_pembayaran', // Bukti pembayaran
         'status',        // Status pemesanan (Menunggu, Diterima, Ditolak)
+        'jumlah_penghuni', // Jumlah
+        'tipe_pembayaran', // Tipe pembayaran (misalnya: Tunai, Transfer, dll)
+        'total_pembayaran', // Total pembayaran yang harus dibayar
+
+    ];
+
+    protected $casts = [
+        'tanggal_sewa' => 'datetime',
     ];
 
     // Relasi ke model User (Penghuni)

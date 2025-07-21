@@ -124,9 +124,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#room">Room</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#booking">Booking</a>
-                    </li>
+                    @auth
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.booking.history') }}">Booking</a>
+                        </li>
+                    @endauth
                     <li class="nav-item ms-3">
                         @auth
                             <div class="dropdown">
@@ -137,7 +139,7 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
                                     <li>
-                                        <a class="dropdown-item" href="#">Profile</a>
+                                        <a class="dropdown-item" href="{{ route('user.profile') }}">Profile</a>
                                     </li>
                                     <li>
                                         <form action="{{ route('user.logout') }}" method="POST" id="logout-form"

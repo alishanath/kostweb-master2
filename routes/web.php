@@ -17,12 +17,28 @@ Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('auth
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('user.logout');
 
+//forget password
+Route::get('/password/forget', [AuthController::class, 'showForgetPasswordForm'])->name('password.request');
+Route::post('/password/email', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
+//reset password
+Route::get('/password/reset/{token?}', [AuthController::class, 'showResetForm'])->name('password.reset');
+Route::post('/password/reset', [AuthController::class, 'reset'])->name('password.update');
+
+//profile
+Route::get('/profile', [AuthController::class, 'profile'])->name('user.profile');
+Route::post('/profile/update', [AuthController::class, 'updateProfile'])->name('user.profile.update');
+
+
 Route::get('/listroom', [AuthController::class, 'listRoom'])->name('user.listroom');
 Route::get('/room/{id}', [AuthController::class, 'detailRoom'])->name('user.detailroom');
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/booking', [AuthController::class, 'bookingroom'])->name('user.booking');
-    Route::post('/booking/proses',[AuthController::class, 'prosesBooking'])->name('user.booking.proses');
+    Route::post('/booking/store', [AuthController::class, 'storeBooking'])->name('user.booking.store');
+    // Route::post('/booking/proses',[AuthController::class, 'prosesBooking'])->name('user.booking.proses');
+    Route::get('/booking/konfirmasi/{bookingId}', [AuthController::class, 'konfirmasiBooking'])->name('user.bookingconfirmation');
+    // Route::post('/booking/konfirmasi/store', [AuthController::class, 'storeKonfirmasiBooking'])->name('user.bookingconfirmation.store');
+    Route::get('/booking/history', [AuthController::class, 'bookingHistory'])->name('user.booking.history');
 });
 
 // Payment route
@@ -30,7 +46,7 @@ Route::get('/payment', [PaymentController::class, 'createTransaction']);
 Route::post('/payment/process', [PaymentController::class, 'process'])->name('payment.process');
 
 // Admin routes
-Route::get('/admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
+Route::get('/admin', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('login.admin');
 Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 

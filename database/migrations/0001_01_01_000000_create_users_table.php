@@ -22,6 +22,7 @@ return new class extends Migration
             $table->enum('role', ['admin', 'penghuni', 'user'])->default('user');
             $table->string('alamat')->nullable();
             $table->date('tanggal_lahir')->nullable();
+            $table->string('ktp')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

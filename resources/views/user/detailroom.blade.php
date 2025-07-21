@@ -331,12 +331,11 @@
 
                     <!-- Occupants -->
                     <div class="mb-4">
-                        <h5 class="section-title">Jumlah Penghuni</h5>
-                        <div class="btn-group" role="group">
-                            <input type="radio" class="btn-check" name="occupants" id="occupant1" autocomplete="off"
-                                checked>
-                            <label class="btn btn-outline-primary occupant-btn" for="occupant1">1 Orang</label>
-
+                        <h5 class="section-title">Kapasitas</h5>
+                        <div>
+                            <span class="badge bg-success text-white fs-6">
+                                {{ $room->kapasitas ?? 'Tidak diketahui' }} Orang
+                            </span>
                         </div>
                     </div>
 
@@ -346,15 +345,21 @@
                             <i class="fas fa-list-check"></i> Fasilitas Kamar
                         </h5>
                         <div class="row">
-                            <div class="col-md-6">
-                                @foreach (explode(',', $room->fasilitas) as $fasilitas)
-                                    <div class="facility-item">
-                                        <i class="fas fa-check-circle"></i>
-                                        <span>{{ trim($fasilitas) }}</span>
-                                    </div>
-                                @endforeach
-                            </div>
-
+                            @php
+                                $fasilitasList = array_map('trim', explode(',', $room->fasilitas));
+                                $half = ceil(count($fasilitasList) / 2);
+                                $fasilitasChunks = array_chunk($fasilitasList, $half);
+                            @endphp
+                            @foreach ($fasilitasChunks as $chunk)
+                                <div class="col-md-6">
+                                    @foreach ($chunk as $fasilitas)
+                                        <div class="facility-item">
+                                            <i class="fas fa-check-circle"></i>
+                                            <span>{{ $fasilitas }}</span>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endforeach
                         </div>
                     </div>
 

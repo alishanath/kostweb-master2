@@ -21,9 +21,10 @@ class User extends Authenticatable
         'password',
         'username',
         'no_hp',
-        'role', // 'admin', 'penghuni', or 'user'
+        'role',
         'alamat',
         'tanggal_lahir',
+        'ktp',
 
     ];
 

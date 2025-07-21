@@ -82,9 +82,11 @@ class AdminController extends Controller
             'fasilitas.*' => 'string', // Validate each item in the 'fasilitas' array as a string
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Image validation
             'status' => 'in:available,booked', // Only allow 'available' or 'booked' status
+            'kapasitas' => 'required|string|max:50', // Validate kapasitas
+
         ]);
 
-        
+
 
         // Set the default status if not provided
         if (!isset($validated['status'])) {
@@ -103,7 +105,7 @@ class AdminController extends Controller
 
             // Create a new 'KelolaKamar' record with the validated data
             KelolaKamar::create($validated);
-            
+
             // Redirect back to 'kamar' with a success message
             return redirect()->route('kamar')->with('success', 'Kamar berhasil ditambahkan');
         } catch (\Exception $e) {
@@ -125,6 +127,8 @@ class AdminController extends Controller
             'fasilitas.*' => 'string|in:AC,WiFi,TV,Kulkas,kipas',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'status' => 'required|in:available,booked', // Added maintenance option
+            'kapasitas' => 'required|string|max:50', // Validate kapasitas
+
         ]);
 
         DB::beginTransaction();
@@ -217,8 +221,7 @@ class AdminController extends Controller
                     $kamarQuery->where('no_kamar', 'like', $searchTerm);
                 })->orWhereHas('penghuni', function ($penghuniQuery) use ($searchTerm) {
                     $penghuniQuery->where('name', 'like', $searchTerm);
-                    // Hapus ini jika kolom tidak ada:
-                    // ->orWhere('nama_lengkap', 'like', $searchTerm);
+
                 });
             });
         }
@@ -268,7 +271,7 @@ class AdminController extends Controller
 
             // Hanya update status kamar menjadi 'booked' jika status pemesanan 'Diterima'
             if ($validated['status'] === 'Diterima') {
-                KelolaKamar::where('id', $validated['kamar_id'])->update(['status' => 'booked']);
+                KelolaKamar::where('id', $valpidated['kamar_id'])->update(['status' => 'booked']);
             }
 
             DB::commit();

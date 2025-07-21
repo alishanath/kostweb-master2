@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="mb-3 text">
-                    <a href="">Forgot Password?</a>
+                    <a href="{{ route('password.request') }}">Forgot Password?</a>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Login</button>
             </form>

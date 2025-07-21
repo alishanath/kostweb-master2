@@ -28,32 +28,77 @@
                 <label class="block text-sm font-medium text-gray-700">Fasilitas</label>
                 <div class="mt-2 flex flex-wrap gap-4"> <!-- Ubah ke flex dan tambahkan gap -->
                     <div class="flex items-center">
-                        <input type="checkbox" id="fasilitas1" name="fasilitas[]" value="AC"
+                        <input type="checkbox" id="fasilitas1" name="fasilitas[]" value="Kamar Mandi Dalam"
                             class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                        <label for="fasilitas1" class="ml-2 block text-sm text-gray-900">AC</label>
+                        <label for="fasilitas1" class="ml-2 block text-sm text-gray-900">Kamar Mandi Dalam</label>
                     </div>
                     <div class="flex items-center">
-                        <input type="checkbox" id="fasilitas2" name="fasilitas[]" value="WiFi"
+                        <input type="checkbox" id="fasilitas2" name="fasilitas[]" value="Kamar Mandi Luar"
                             class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                        <label for="fasilitas2" class="ml-2 block text-sm text-gray-900">WiFi</label>
+                        <label for="fasilitas2" class="ml-2 block text-sm text-gray-900">Kamar Mandi Luar</label>
                     </div>
                     <div class="flex items-center">
-                        <input type="checkbox" id="fasilitas3" name="fasilitas[]" value="TV"
+                        <input type="checkbox" id="fasilitas3" name="fasilitas[]" value="Jendela"
                             class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                        <label for="fasilitas3" class="ml-2 block text-sm text-gray-900">TV</label>
+                        <label for="fasilitas3" class="ml-2 block text-sm text-gray-900">Jendela</label>
                     </div>
                     <div class="flex items-center">
-                        <input type="checkbox" id="fasilitas4" name="fasilitas[]" value="Kulkas"
+                        <input type="checkbox" id="fasilitas4" name="fasilitas[]" value="Kasur"
                             class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                        <label for="fasilitas4" class="ml-2 block text-sm text-gray-900">Kulkas</label>
+                        <label for="fasilitas4" class="ml-2 block text-sm text-gray-900">Kasur</label>
                     </div>
                     <div class="flex items-center">
-                        <input type="checkbox" id="fasilitas5" name="fasilitas[]" value="kipas"
+                        <input type="checkbox" id="fasilitas5" name="fasilitas[]" value="Bantal"
                             class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                        <label for="fasilitas5" class="ml-2 block text-sm text-gray-900">Kipas Angin</label>
+                        <label for="fasilitas5" class="ml-2 block text-sm text-gray-900">Bantal</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="fasilitas6" name="fasilitas[]" value="Lemari"
+                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <label for="fasilitas6" class="ml-2 block text-sm text-gray-900">Lemari</label>
+                    </div>
+
+                    <div class="flex items-center">
+                        <input type="checkbox" id="fasilitas7" name="fasilitas[]" value="Laci"
+                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <label for="fasilitas7" class="ml-2 block text-sm text-gray-900">Laci</label>
+                    </div>
+
+                    <div class="flex items-center">
+                        <input type="checkbox" id="fasilitas8" name="fasilitas[]" value="Rak Sepatu"
+                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <label for="fasilitas8" class="ml-2 block text-sm text-gray-900">Rak Sepatu</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="fasilitas9" name="fasilitas[]" value="Kipas Angin"
+                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <label for="fasilitas9" class="ml-2 block text-sm text-gray-900">Kipas Angin</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="fasilitas10" name="fasilitas[]" value="Wifi"
+                            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <label for="fasilitas10" class="ml-2 block text-sm text-gray-900">Wifi</label>
                     </div>
                 </div>
             </div>
+
+            <div>
+                <label for="kapasitas" class="block text-sm font-medium text-gray-700">Kapasitas</label>
+                <select name="kapasitas" id="kapasitas" required
+                    class="w-full border rounded px-3 py-2 @error('kapasitas') border-red-500 @enderror">
+                    <option value="">Pilih Kapasitas</option>
+                    @for ($i = 1; $i <= 5; $i++)
+                        <option value="{{ $i }}"
+                            {{ old('kapasitas', $kamar->kapasitas ?? '') == $i ? 'selected' : '' }}>
+                            {{ $i }} Orang
+                        </option>
+                    @endfor
+                </select>
+                @error('kapasitas')
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
+
             <div>
                 <label for="gambar" class="block text-sm font-medium text-gray-700">Gambar</label>
                 <input type="file" name="gambar" id="gambar" class="w-full border rounded px-3 py-2">
