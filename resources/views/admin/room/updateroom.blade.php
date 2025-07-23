@@ -125,11 +125,16 @@
                 <select name="kapasitas" id="edit_kapasitas" required
                     class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                     <option value="">Pilih Kapasitas</option>
-                    <option value="1">1 Orang</option>
-                    <option value="2">2 Orang</option>
-                    <option value="3">3 Orang</option>
-                    <option value="4">4 Orang</option>
-                    <option value="5">5 Orang</option>
+                    <option value="1" {{ isset($item->kapasitas) && $item->kapasitas == 1 ? 'selected' : '' }}>1
+                        Orang</option>
+                    <option value="2" {{ isset($item->kapasitas) && $item->kapasitas == 2 ? 'selected' : '' }}>2
+                        Orang</option>
+                    <option value="3" {{ isset($item->kapasitas) && $item->kapasitas == 3 ? 'selected' : '' }}>3
+                        Orang</option>
+                    <option value="4" {{ isset($item->kapasitas) && $item->kapasitas == 4 ? 'selected' : '' }}>4
+                        Orang</option>
+                    <option value="5" {{ isset($item->kapasitas) && $item->kapasitas == 5 ? 'selected' : '' }}>5
+                        Orang</option>
                 </select>
             </div>
 

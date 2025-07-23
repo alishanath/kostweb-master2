@@ -126,7 +126,7 @@
                     </li>
                     @auth
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('user.booking.history') }}">Booking</a>
+                            <a class="nav-link" href="{{ route('user.history-booking') }}">Booking</a>
                         </li>
                     @endauth
                     <li class="nav-item ms-3">

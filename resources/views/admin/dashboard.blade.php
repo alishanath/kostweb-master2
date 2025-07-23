@@ -58,13 +58,7 @@
                             </div>
                             <span class="text-sm font-medium">{{ $occupiedRooms }} Kamar</span>
                         </div>
-                        <div class="flex justify-between items-center">
-                            <div class="flex items-center">
-                                <span class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></span>
-                                <span class="text-sm text-gray-600">Perawatan</span>
-                            </div>
-                            <span class="text-sm font-medium">{{ $maintenanceRooms }} Kamar</span>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -136,22 +130,22 @@
             const roomStatusChart = new Chart(ctx, {
                 type: 'pie',
                 data: {
-                    labels: ['Tersedia', 'Terisi', 'Dalam Perawatan'],
+                    labels: ['Tersedia', 'Terisi'],
                     datasets: [{
                         data: [
                             {{ $availableRooms }},
                             {{ $occupiedRooms }},
-                            {{ $maintenanceRooms }}
+
                         ],
                         backgroundColor: [
                             'rgba(16, 185, 129, 0.8)', // Tersedia (Green)
                             'rgba(239, 68, 68, 0.8)', // Terisi (Red)
-                            'rgba(245, 158, 11, 0.8)' // Perawatan (Yellow)
+
                         ],
                         borderColor: [
                             'rgba(16, 185, 129, 1)', // Green border
                             'rgba(239, 68, 68, 1)', // Red border
-                            'rgba(245, 158, 11, 1)' // Yellow border
+
                         ],
                         borderWidth: 2
                     }]

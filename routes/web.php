@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\NotifikasiController;
 
 ;
 
@@ -38,7 +39,9 @@ Route::middleware(['auth'])->group(function() {
     // Route::post('/booking/proses',[AuthController::class, 'prosesBooking'])->name('user.booking.proses');
     Route::get('/booking/konfirmasi/{bookingId}', [AuthController::class, 'konfirmasiBooking'])->name('user.bookingconfirmation');
     // Route::post('/booking/konfirmasi/store', [AuthController::class, 'storeKonfirmasiBooking'])->name('user.bookingconfirmation.store');
-    Route::get('/booking/history', [AuthController::class, 'bookingHistory'])->name('user.booking.history');
+    Route::get('/history-booking', [AuthController::class, 'historyBooking'])->name('user.history-booking');
+
+
 });
 
 // Payment route
@@ -66,6 +69,8 @@ Route::get('/admin/notifikasi', [AdminController::class, 'indexNotifikasi'])->na
 Route::post('/admin/notifikasi/store', [AdminController::class, 'storeNotifikasi'])->name('notifikasi.store');
 Route::post('/admin/notifikasi/update/{id}', [AdminController::class, 'updateNotifikasi'])->name('notifikasi.update');
 Route::post('/admin/notifikasi/destroy/{id}', [AdminController::class, 'destroyNotifikasi'])->name('notifikasi.destroy');
+Route::post('/admin/notifikasi/kirim-email/{id}', [NotifikasiController::class, 'kirimEmail'])->name('admin.notifikasi.kirimEmail');
+
 
 // Booking management
 Route::get('/admin/pemesanan', [AdminController::class, 'indexPemesanan'])->name('pemesanan');

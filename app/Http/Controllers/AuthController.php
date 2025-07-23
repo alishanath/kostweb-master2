@@ -125,7 +125,7 @@ class AuthController extends Controller
 
         $user->save();
 
-        return redirect()->route('auth.user.profile')->with('success', 'Profil berhasil diperbarui.');
+        return redirect()->route('user.profile')->with('success', 'Profil berhasil diperbarui.');
     }
 
     public function listRoom()
@@ -317,10 +317,15 @@ class AuthController extends Controller
     // }
 
 
-    public function bookingHistory()
+    public function historyBooking()
     {
-        return view('user.bookinghistory');
+         $bookings = KelolaPemesanan::with('kamar')
+        ->where('penghuni_id', auth()->id()) // ✅ gunakan nama kolom yang benar
+        ->get();
+
+    return view('user.bookinghistory', compact('bookings'));
     }
+
 
 
     public function showForgetPasswordForm()
@@ -373,6 +378,29 @@ class AuthController extends Controller
         }
 
         return back()->withErrors(['email' => __($status)]);
+    }
+
+
+    public function showhistory()
+    {
+        $userId = Auth::id(); // Ambil ID user login
+
+        // Ambil semua booking user yang login
+        $bookings = KelolaPemesanan::with('kamar')
+            ->where('penghuni_id', $userId)
+            ->orderBy('created_at', 'desc')
+            ->paginate(5); // Bisa pakai get() kalau mau tanpa pagination
+
+        // Kirim data ke view
+        return view('user.history-booking', compact('bookings'));
+    }
+
+
+    public function showdetail($id)
+    {
+        $booking = KelolaPemesanan::with(['kamar', 'penghuni'])->findOrFail($id);
+
+        return response()->json($booking);
     }
 
 

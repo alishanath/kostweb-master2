@@ -68,14 +68,10 @@
         }
 
         .badge-completed {
-            background-color: #17a2b8;
-            color: white;
-        }
-
-        .badge-cancelled {
             background-color: #dc3545;
             color: white;
         }
+
 
         /* Button Styling */
         .btn-primary {
@@ -165,7 +161,6 @@
                 <h5 class="mb-0">
                     <i class="fas fa-list me-2"></i>Daftar Booking
                 </h5>
-                <span class="badge bg-primary-light">Total: 3 Booking</span>
             </div>
 
             <div class="card-body p-0">
@@ -173,242 +168,162 @@
                     <table class="table table-hover mb-0">
                         <thead>
                             <tr>
-                                <th>No. Booking</th>
-                                <th>Kamar</th>
-                                <th>Periode</th>
+                                <th>Kode Booking</th>
+                                <th>No Kamar</th>
+                                <th>Tanggal Sewa</th>
                                 <th>Total</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Booking 1 -->
-                            <tr>
-                                <td>#BK-2023-001</td>
-                                <td>
-                                    <strong>Kamar Hijau 01</strong><br>
-                                    <small class="text-muted">Type: AC + Kamar Mandi Dalam</small>
-                                </td>
-                                <td>
-                                    15 Jul - 15 Aug 2023<br>
-                                    <small class="text-muted">(30 hari)</small>
-                                </td>
-                                <td>Rp 1.800.000</td>
-                                <td>
-                                    <span class="badge badge-confirmed">
-                                        <i class="fas fa-check-circle me-1"></i>Confirmed
-                                    </span>
-                                </td>
-                                <td>
-                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
-                                        data-bs-target="#bookingDetailModal">
-                                        <i class="fas fa-eye"></i> Detail
-                                    </button>
-                                </td>
-                            </tr>
+                            @foreach ($bookings as $booking)
+                                <tr>
+                                    <td>{{ $booking->kode_booking }}</td>
+                                    <td>
+                                        {{ $booking->kamar->no_kamar }}
+                                        {{-- <strong>{{ $booking->no_kamar }}</strong><br> --}}
+                                        {{-- <small class="text-muted">{{ $booking->no_kamar }}</small> --}}
+                                    </td>
+                                    <td>
+                                        {{ \Carbon\Carbon::parse($booking->tanggal_sewa)->format('d M Y') }}
 
-                            <!-- Booking 2 -->
-                            <tr>
-                                <td>#BK-2023-002</td>
-                                <td>
-                                    <strong>Kamar Hijau 02</strong><br>
-                                    <small class="text-muted">Type: AC + Kamar Mandi Luar</small>
-                                </td>
-                                <td>
-                                    1 Aug - 1 Sep 2023<br>
-                                    <small class="text-muted">(31 hari)</small>
-                                </td>
-                                <td>Rp 1.550.000</td>
-                                <td>
-                                    <span class="badge badge-pending">
-                                        <i class="fas fa-clock me-1"></i>Pending
-                                    </span>
-                                </td>
-                                <td>
-                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
-                                        data-bs-target="#bookingDetailModal">
-                                        <i class="fas fa-eye"></i> Detail
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <!-- Booking 3 -->
-                            <tr>
-                                <td>#BK-2023-003</td>
-                                <td>
-                                    <strong>Kamar Hijau 03</strong><br>
-                                    <small class="text-muted">Type: Non-AC + Kamar Mandi Dalam</small>
-                                </td>
-                                <td>
-                                    10 Jun - 10 Jul 2023<br>
-                                    <small class="text-muted">(30 hari)</small>
-                                </td>
-                                <td>Rp 1.200.000</td>
-                                <td>
-                                    <span class="badge badge-completed">
-                                        <i class="fas fa-calendar-check me-1"></i>Completed
-                                    </span>
-                                </td>
-                                <td>
-                                    <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
-                                        data-bs-target="#bookingDetailModal">
-                                        <i class="fas fa-eye"></i> Detail
-                                    </button>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td>Rp {{ number_format($booking->total_pembayaran, 0, ',', '.') }}</td>
+                                    <td>
+                                        @php
+                                            $statusClass = [
+                                                'Menunggu' => 'badge-pending',
+                                                'Diterima' => 'badge-confirmed',
+                                                'Ditolak' => 'badge-completed',
+                                            ];
+                                        @endphp
+                                        <span class="badge {{ $statusClass[$booking->status] ?? 'badge-secondary' }}">
+                                            {{ ucfirst($booking->status) }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
+                                            data-bs-target="#bookingDetailModal{{ $booking->id }}">
+                                            <i class="fas fa-eye"></i> Detail
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
+
                     </table>
                 </div>
-            </div>
-
-            <div class="card-footer bg-transparent">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center mb-0">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
             </div>
         </div>
     </div>
 
     <!-- Booking Detail Modal -->
-    <div class="modal fade" id="bookingDetailModal" tabindex="-1" aria-labelledby="bookingDetailModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="bookingDetailModalLabel">
-                        <i class="fas fa-file-invoice me-2"></i>Detail Booking #BK-2023-001
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card shadow-sm mb-4">
-                                <div class="card-header bg-transparent">
-                                    <h6 class="mb-0">
-                                        <i class="fas fa-home me-2"></i>Informasi Kamar
-                                    </h6>
-                                </div>
-                                <div class="card-body">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item d-flex justify-content-between">
-                                            <span>Nama Kamar:</span>
-                                            <strong>Kamar Hijau 01</strong>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between">
-                                            <span>Tipe Kamar:</span>
-                                            <strong>AC + Kamar Mandi Dalam</strong>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between">
-                                            <span>Lantai:</span>
-                                            <strong>2</strong>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="mb-2">Fasilitas:</div>
-                                            <div class="d-flex flex-wrap gap-2">
-                                                <span class="badge bg-light text-dark">
-                                                    <i class="fas fa-bed me-1"></i>Kasur
-                                                </span>
-                                                <span class="badge bg-light text-dark">
-                                                    <i class="fas fa-archive me-1"></i>Lemari
-                                                </span>
-                                                <span class="badge bg-light text-dark">
-                                                    <i class="fas fa-wifi me-1"></i>WiFi
-                                                </span>
-                                                <span class="badge bg-light text-dark">
-                                                    <i class="fas fa-tv me-1"></i>TV
-                                                </span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="card shadow-sm mb-4">
-                                <div class="card-header bg-transparent">
-                                    <h6 class="mb-0">
-                                        <i class="fas fa-calendar-alt me-2"></i>Detail Pemesanan
-                                    </h6>
-                                </div>
-                                <div class="card-body">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item d-flex justify-content-between">
-                                            <span>Tanggal Booking:</span>
-                                            <strong>10 Jul 2023</strong>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between">
-                                            <span>Check In:</span>
-                                            <strong>15 Jul 2023</strong>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between">
-                                            <span>Check Out:</span>
-                                            <strong>15 Aug 2023</strong>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between">
-                                            <span>Durasi:</span>
-                                            <strong>30 hari</strong>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between">
-                                            <span>Harga per Bulan:</span>
-                                            <strong>Rp 1.800.000</strong>
-                                        </li>
-                                        <li class="list-group-item d-flex justify-content-between">
-                                            <span>Status:</span>
-                                            <span class="badge badge-confirmed">
-                                                <i class="fas fa-check-circle me-1"></i>Confirmed
-                                            </span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+    @foreach ($bookings as $booking)
+        <div class="modal fade" id="bookingDetailModal{{ $booking->id }}" tabindex="-1"
+            aria-labelledby="bookingDetailModalLabel{{ $booking->id }}" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="bookingDetailModalLabel{{ $booking->id }}">
+                            <i class="fas fa-file-invoice me-2"></i>Detail Booking {{ $booking->kode_booking }}
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
                     </div>
-
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card shadow-sm">
-                                <div class="card-header bg-transparent">
-                                    <h6 class="mb-0">
-                                        <i class="fas fa-sticky-note me-2"></i>Catatan Tambahan
-                                    </h6>
+                    <div class="modal-body">
+                        <div class="row">
+                            <!-- Informasi Kamar -->
+                            <div class="col-md-6">
+                                <div class="card shadow-sm mb-4">
+                                    <div class="card-header bg-transparent">
+                                        <h6><i class="fas fa-home me-2"></i>Informasi Kamar</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item d-flex justify-content-between">
+                                                <span>Kode Booking:</span>
+                                                <strong>{{ $booking->kode_booking }}</strong>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between">
+                                                <span>Nama Penghuni:</span>
+                                                <strong>{{ $booking->penghuni->name }}</strong>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between">
+                                                <span>Nomer Kamar:</span>
+                                                <strong>{{ $booking->kamar->no_kamar }}</strong>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between">
+                                                <span>Jumlah Penghuni</span>
+                                                <strong>{{ $booking->jumlah_penghuni }} Orang</strong>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="card-body">
-                                    <div class="alert alert-request mb-0">
-                                        <p class="mb-0">Mohon disediakan tambahan bantal dan selimut. Saya akan tiba
-                                            sekitar jam 2 siang di tanggal check-in.</p>
+                            </div>
+
+                            <!-- Detail Pemesanan -->
+                            <div class="col-md-6">
+                                <div class="card shadow-sm mb-4">
+                                    <div class="card-header bg-transparent">
+                                        <h6><i class="fas fa-calendar-alt me-2"></i>Detail Pemesanan</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item d-flex justify-content-between">
+                                                <span>Tanggal Booking:</span>
+                                                <strong>{{ $booking->tanggal_sewa->format('d M Y') }}</strong>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between">
+                                                <span>Tipe Pembayaran</span>
+                                                <strong>{{ $booking->tipe_pembayaran }}</strong>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between">
+                                                <span>Total Pembayaran:</span>
+                                                <strong>Rp
+                                                    {{ number_format($booking->total_pembayaran, 0, ',', '.') }}</strong>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between">
+                                                <span>Status:</span>
+                                                <span
+                                                    class="badge {{ $statusClass[$booking->status] ?? 'badge-secondary' }}">
+                                                    {{ ucfirst($booking->status) }}
+                                                </span>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Catatan Tambahan -->
+                        @if ($booking->catatan)
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card shadow-sm">
+                                        <div class="card-header bg-transparent">
+                                            <h6><i class="fas fa-sticky-note me-2"></i>Catatan Tambahan</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="alert alert-request mb-0">
+                                                <p class="mb-0">{{ $booking->catatan }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        <i class="fas fa-times me-1"></i> Tutup
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                        <i class="fas fa-times-circle me-1"></i> Batalkan Booking
-                    </button>
-                    <button type="button" class="btn btn-primary">
-                        <i class="fas fa-print me-1"></i> Cetak Invoice
-                    </button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="fas fa-times me-1"></i> Tutup
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endforeach
+
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
