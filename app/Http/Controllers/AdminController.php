@@ -80,7 +80,7 @@ class AdminController extends Controller
             'deskripsi_kamar' => 'required|string|max:500',
             'fasilitas' => 'required|array', // Make sure 'fasilitas' is an array (from checkboxes)
             'fasilitas.*' => 'string', // Validate each item in the 'fasilitas' array as a string
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Image validation
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:5000', // Image validation
             'status' => 'in:available,booked', // Only allow 'available' or 'booked' status
             'kapasitas' => 'required|string|max:50', // Validate kapasitas
 

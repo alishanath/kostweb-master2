@@ -1,237 +1,104 @@
-@extends('admin.layouts.app')
-
-@section('title', 'Dashboard Status Kamar')
+@extends('layouts.index')
+@section('title', 'Edit Profil')
 
 @section('content')
-    <div class="container mx-auto px-4 py-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <!-- Pie Chart Section -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <div class="bg-gray-100 px-6 py-4 border-b border-gray-200">
-                    <h2 class="text-lg font-semibold text-gray-700">Distribusi Status Kamar</h2>
-                </div>
-                <div class="p-6">
-                    <canvas id="roomStatusChart" height="250"></canvas>
+    <div class="max-w-3xl mx-auto bg-white p-6 rounded-xl shadow-md mt-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Edit Profil</h2>
+
+        <!-- Pesan sukses -->
+        @if (session('success'))
+            <div class="bg-green-100 text-green-700 p-3 rounded-lg mb-4">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <!-- Validasi Error -->
+        @if ($errors->any())
+            <div class="bg-red-100 text-red-700 p-3 rounded-lg mb-4">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>- {{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form action="{{ route('user.profile.update') }}" method="POST" enctype="multipart/form-data" class="space-y-5">
+            @csrf
+
+            <!-- Nama -->
+            <div>
+                <label for="name" class="block text-gray-700 font-semibold mb-1">Nama Lengkap</label>
+                <input type="text" name="name" id="name" value="{{ old('name', $user->name) }}"
+                    class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500" required>
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label for="email" class="block text-gray-700 font-semibold mb-1">Email</label>
+                <input type="email" name="email" id="email" value="{{ old('email', $user->email) }}"
+                    class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500" required>
+            </div>
+
+            <!-- No HP -->
+            <div>
+                <label for="no_hp" class="block text-gray-700 font-semibold mb-1">No HP</label>
+                <input type="text" name="no_hp" id="no_hp" value="{{ old('no_hp', $user->no_hp) }}"
+                    class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500" required>
+            </div>
+
+            <!-- Alamat -->
+            <div>
+                <label for="alamat" class="block text-gray-700 font-semibold mb-1">Alamat</label>
+                <textarea name="alamat" id="alamat" rows="3"
+                    class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500" required>{{ old('alamat', $user->alamat) }}</textarea>
+            </div>
+
+            <!-- Tanggal Lahir -->
+            <div>
+                <label for="tanggal_lahir" class="block text-gray-700 font-semibold mb-1">Tanggal Lahir</label>
+                <input type="date" name="tanggal_lahir" id="tanggal_lahir"
+                    value="{{ old('tanggal_lahir', $user->tanggal_lahir) }}"
+                    class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500" required>
+            </div>
+
+            <!-- Upload KTP -->
+            <div>
+                <label for="ktp" class="block text-gray-700 font-semibold mb-1">Upload Foto KTP (Opsional)</label>
+                <input type="file" name="ktp" id="ktp"
+                    class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500" accept="image/*"
+                    onchange="previewImage(event)">
+
+                <!-- Preview KTP -->
+                <div class="mt-3">
+                    <p class="text-gray-600 mb-2">Preview Foto KTP:</p>
+                    <img id="ktp-preview"
+                        src="{{ $user->ktp ? asset('storage/' . $user->ktp) : 'https://via.placeholder.com/150' }}"
+                        class="w-40 rounded-lg border" alt="Foto KTP">
                 </div>
             </div>
 
-            <!-- Summary Section -->
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <div class="bg-gray-100 px-6 py-4 border-b border-gray-200">
-                    <h2 class="text-lg font-semibold text-gray-700">Ringkasan Kamar</h2>
-                </div>
-                <div class="p-6">
-                    <div class="grid grid-cols-2 gap-4 mb-6">
-                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
-                            <h3 class="text-center text-gray-600 font-medium">Total Kamar</h3>
-                            <p class="text-center text-3xl font-bold text-blue-600 mt-2">{{ $totalRooms }}</p>
-                        </div>
-                        <div class="bg-green-50 p-4 rounded-lg border border-green-100">
-                            <h3 class="text-center text-gray-600 font-medium">Terisi</h3>
-                            <p class="text-center text-3xl font-bold text-green-600 mt-2">{{ $occupiedRooms }}</p>
-                        </div>
-                    </div>
-
-                    <div class="mb-4">
-                        <div class="flex justify-between mb-1">
-                            <span class="text-sm font-medium text-gray-700">Ketersediaan Kamar</span>
-                            <span class="text-sm font-medium text-gray-700">{{ $availabilityPercentage }}% Tersedia</span>
-                        </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5">
-                            <div class="bg-green-500 h-2.5 rounded-full" style="width: {{ $availabilityPercentage }}%">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center">
-                            <div class="flex items-center">
-                                <span class="w-3 h-3 bg-green-500 rounded-full mr-2"></span>
-                                <span class="text-sm text-gray-600">Tersedia</span>
-                            </div>
-                            <span class="text-sm font-medium">{{ $availableRooms }} Kamar</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <div class="flex items-center">
-                                <span class="w-3 h-3 bg-red-500 rounded-full mr-2"></span>
-                                <span class="text-sm text-gray-600">Terisi</span>
-                            </div>
-                            <span class="text-sm font-medium">{{ $occupiedRooms }} Kamar</span>
-                        </div>
-                    </div>
-                </div>
+            <!-- Tombol -->
+            <div class="flex justify-end">
+                {{-- kembali --}}
+                <a href="{{ route('user.home') }}"
+                    class="bg-gray-300 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-400 mr-3">Kembali</a>
+                {{-- simpan perubahan --}}
+                <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+                    Simpan Perubahan
+                </button>
             </div>
-        </div>
-
-        <!-- Recent Activity Section -->
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-            <div class="bg-gray-100 px-6 py-4 border-b border-gray-200">
-                <h2 class="text-lg font-semibold text-gray-700">Aktivitas Terkini</h2>
-            </div>
-            <div class="p-6 overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">No Kamar</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Update</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Oleh</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($recentActivities as $activity)
-                            @php
-                                $status = strtolower($activity->status);
-                                $badgeColor = match ($status) {
-                                    'tersedia' => 'green',
-                                    'terisi' => 'red',
-                                    'perawatan' => 'yellow',
-                                    default => 'gray',
-                                };
-                            @endphp
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4 text-sm text-gray-900">{{ $activity->no_kamar }}</td>
-                                <td class="px-6 py-4">
-                                    <span
-                                        class="bg-{{ $badgeColor }}-100 text-{{ $badgeColor }}-800 text-xs font-semibold px-3 py-1 rounded-full">
-                                        {{ ucfirst($activity->status) }}
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 text-sm text-gray-500">{{ $activity->updated_at->diffForHumans() }}
-                                </td>
-                                <td class="px-6 py-4 text-sm text-gray-500">Admin</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Line Chart Section -->
-        <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6 mt-8">
-            <h1 class="text-2xl font-bold text-gray-800 mb-6">Diagram Pendapatan & Biaya</h1>
-            <div class="w-full h-96">
-                <canvas id="revenueCostChart"></canvas>
-            </div>
-            <div class="mt-4 flex justify-between text-sm text-gray-600">
-                <div>Periode: Januari - Desember {{ now()->year }}</div>
-                <div class="font-bold">
-                    Total Pendapatan: Rp {{ number_format(array_sum($monthlyRevenue), 0, ',', '.') }}
-                </div>
-            </div>
-        </div>
+        </form>
     </div>
-@endsection
 
-@push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Preview Script -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Pie Chart (Status Kamar)
-            const ctx = document.getElementById('roomStatusChart').getContext('2d');
-            const roomStatusChart = new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: ['Tersedia', 'Terisi'],
-                    datasets: [{
-                        data: [{{ $availableRooms }}, {{ $occupiedRooms }}],
-                        backgroundColor: [
-                            'rgba(16, 185, 129, 0.8)', // Tersedia (Green)
-                            'rgba(239, 68, 68, 0.8)', // Terisi (Red)
-                        ],
-                        borderColor: [
-                            'rgba(16, 185, 129, 1)',
-                            'rgba(239, 68, 68, 1)',
-                        ],
-                        borderWidth: 2
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: {
-                                font: {
-                                    size: 14,
-                                    weight: 'bold'
-                                }
-                            }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                                    const percentage = Math.round((context.raw / total) * 100);
-                                    return `${context.label}: ${context.raw} Kamar (${percentage}%)`;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Line Chart (Pendapatan Dinamis)
-            const lineCtx = document.getElementById('revenueCostChart').getContext('2d');
-            new Chart(lineCtx, {
-                type: 'line',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov',
-                        'Des'
-                    ],
-                    datasets: [{
-                        label: 'Pendapatan',
-                        data: @json($monthlyRevenue), // Data dinamis dari controller
-                        borderColor: 'rgba(59, 130, 246, 1)',
-                        backgroundColor: 'rgba(59, 130, 246, 0.2)',
-                        borderWidth: 4,
-                        tension: 0.3,
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                            labels: {
-                                font: {
-                                    size: 14
-                                }
-                            }
-                        },
-                        tooltip: {
-                            mode: 'index',
-                            intersect: false
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function(value) {
-                                    return 'Rp ' + value.toLocaleString('id-ID');
-                                }
-                            },
-                            grid: {
-                                borderColor: 'rgba(0,0,0,0.1)',
-                                borderWidth: 1
-                            }
-                        },
-                        x: {
-                            grid: {
-                                borderColor: 'rgba(0,0,0,0.1)',
-                                borderWidth: 1
-                            }
-                        }
-                    },
-                    interaction: {
-                        mode: 'nearest',
-                        axis: 'x',
-                        intersect: false
-                    }
-                }
-            });
-        });
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                document.getElementById('ktp-preview').src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
     </script>
-@endpush
+@endsection

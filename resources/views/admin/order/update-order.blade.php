@@ -141,16 +141,16 @@
             </div>
 
 
-            {{-- tipe pembayaran bulanan dan harian --}}
+            {{-- tipe pembayaran bulanan dan Mingguan --}}
             <div class="mb-4">
                 <label for="tipe_pembayaran" class="block text-sm font-medium text-gray-700">Tipe Pembayaran</label>
                 <select name="tipe_pembayaran" id="tipe_pembayaran" required class="w-full border rounded px-3 py-2">
                     <option value="bulanan"
                         {{ old('tipe_pembayaran', $pesanan->tipe_pembayaran) == 'bulanan' ? 'selected' : '' }}>
                         Bulanan</option>
-                    <option value="harian"
-                        {{ old('tipe_pembayaran', $pesanan->tipe_pembayaran) == 'harian' ? 'selected' : '' }}>
-                        Harian</option>
+                    <option value="Mingguan"
+                        {{ old('tipe_pembayaran', $pesanan->tipe_pembayaran) == 'Mingguan' ? 'selected' : '' }}>
+                        Mingguan</option>
                 </select>
                 @error('tipe_pembayaran')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
