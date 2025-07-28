@@ -41,10 +41,12 @@
                             <td class="px-6 py-4">
                                 @php
                                     $tanggalSewa = \Carbon\Carbon::parse($item->tanggal_sewa);
-                                    if ($item->tipe_pembayaran === 'bulanan') {
-                                        $jatuhTempo = $tanggalSewa->copy()->addMonth();
-                                    } elseif ($item->tipe_pembayaran === 'mingguan') {
-                                        $jatuhTempo = $tanggalSewa->copy()->addWeek();
+                                    $tipe = strtolower(trim($item->tipe_pembayaran));
+
+                                    if ($tipe === 'bulanan') {
+                                        $jatuhTempo = $tanggalSewa->copy()->addDays(30);
+                                    } elseif ($tipe === 'mingguan') {
+                                        $jatuhTempo = $tanggalSewa->copy()->addDays(7);
                                     } else {
                                         $jatuhTempo = $tanggalSewa;
                                     }
