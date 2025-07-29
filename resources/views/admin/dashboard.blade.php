@@ -115,7 +115,7 @@
                 <canvas id="revenueCostChart"></canvas>
             </div>
             <div class="mt-4 flex justify-between text-sm text-gray-600">
-                <div>Periode: Januari - Desember 2023</div>
+                <div>Periode: Januari - Desember 2025</div>
                 <div>Satuan: Juta Rupiah</div>
             </div>
         </div>

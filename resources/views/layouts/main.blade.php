@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kost Putri Alfia</title>
+    <title>Kost Putri Alfia Purwokerto</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
@@ -107,7 +107,7 @@
         <div class="container ">
             <a class="navbar-brand d-flex align-items-center" href="#">
                 <img src="/images/logo1.png" alt="Logo" style="height: 80px; margin-right: 5px;">
-                KOST PUTRI ALFIA
+                KOST PUTRI ALFIA PURWOKERTO
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -172,13 +172,13 @@
                 <div class="col-md-4">
                     <a class="navbar-brand d-flex align-items-center" href="#">
                         <img src="/images/logo1.png" alt="Logo" style="height: 100px; margin-right: 5px;">
-                        <strong>KOST PUTRI ALFIA</strong>
+                        <strong>KOST PUTRI ALFIA PURWOKERTO</strong>
                     </a>
                     <div class="mt-3" style="text-align: justify;">
-                        <p class="mt-3">Kost
-                            Putri Alfia adalah tempat tinggal yang nyaman dan aman untuk para wanita. Kami menyediakan
-                            fasilitas lengkap dan layanan terbaik untuk kenyamanan Anda.</p>
-                        <p>Jalan Sokaraja IV, Purwokerto, Jawa Tengah</p>
+                        <p class="mt-3">
+                            Kost Putri Alfia adalah tempat tinggal yang nyaman dan aman untuk para wanita. 
+                            Kami menyediakan fasilitas lengkap dan layanan terbaik untuk kenyamanan Anda.</p>
+                        <p>Jl. Sokabaru IV No. 24, RT.002/RW.004, Kel. Berkoh, Kec. Purwokerto Selatan, Kab. Banyumas, Jawa Tengah</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -186,17 +186,17 @@
                     <div class="social-media mt-3">
                         <ul class="list-unstyled d-flex justify-content-center">
                             <li class="mx-2">
-                                <a href="https://www.instagram.com/your_instagram" target="_blank">
+                                <a href="https://www.instagram.com/alfiakostpurwokerto" target="_blank">
                                     <i class="bi bi-instagram" style="font-size: 1.5rem; color: #28a745;"></i>
                                 </a>
                             </li>
                             <li class="mx-2">
-                                <a href="https://wa.me/081234567890" target="_blank">
+                                <a href="https://wa.me/6289630433177?text=Halo%2C%20saya%20ingin%20bertanya%20tentang%20Kost%20Putri%20Alfia%20Purwokerto" target="_blank">
                                     <i class="bi bi-whatsapp" style="font-size: 1.5rem; color: #28a745;"></i>
                                 </a>
                             </li>
                             <li class="mx-2">
-                                <a href="https://www.facebook.com/your_facebook" target="_blank">
+                                <a href="https://www.facebook.com/AlfiaKost" target="_blank">
                                     <i class="bi bi-facebook" style="font-size: 1.5rem; color: #28a745;"></i>
                                 </a>
                             </li>
@@ -204,18 +204,18 @@
                     </div>
                 </div>
                 <div class="col-md-3 offset-md-1 text-start">
-                    <h5 class="mb-3">Layanan</h5>
+                    <h5 class="mb-3">Layanan Kami</h5>
                     <ul class="list-unstyled">
                         <li><a href="#cleaning" class="text-decoration-none text-dark">Layanan Kebersihan</a></li>
                         <li><a href="#wifi" class="text-decoration-none text-dark">Wi-Fi Gratis</a></li>
-                        <li><a href="#security" class="text-decoration-none text-dark">Keamanan 24 Jam</a></li>
-                        <li><a href="#laundry" class="text-decoration-none text-dark">Layanan Laundry</a></li>
+                        <li><a href="#security" class="text-decoration-none text-dark">Layanan Perbaikan</a></li>
+                        <li><a href="#laundry" class="text-decoration-none text-dark">Keamanan 24 Jam</a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="container mt-4">
-            <p>&copy; 2023 Kost Putri Alfia. All rights reserved.</p>
+            <p>&copy; 2017 Kost Putri Alfia Purwokerto.</p>
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

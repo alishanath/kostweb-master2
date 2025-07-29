@@ -21,7 +21,7 @@
     <div class="flex">
         <!-- Sidebar -->
         <div class="w-1/5 bg-white h-screen p-5 shadow-md fixed ">
-            <h2 class="font-bold text-xl mb-5">🏠 Kost Putri Alifa Purwokerto</h2>
+            <h2 class="font-bold text-xl mb-5">🏠 Kost Putri Alfia Purwokerto</h2>
             <ul>
                 <li class="mb-2">
                     <a href="{{ route('dashboard') }}"

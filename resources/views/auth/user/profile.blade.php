@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="max-w-3xl mx-auto bg-white p-6 rounded-xl shadow-md mt-8">
-        <h2 class="text-2xl font-bold text-gray-800 mb-6">Edit Profil</h2>
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Edit Profile</h2>
 
         <!-- Pesan sukses -->
         @if (session('success'))
@@ -42,7 +42,7 @@
 
             <!-- No HP -->
             <div>
-                <label for="no_hp" class="block text-gray-700 font-semibold mb-1">No HP</label>
+                <label for="no_hp" class="block text-gray-700 font-semibold mb-1">No. HP</label>
                 <input type="text" name="no_hp" id="no_hp" value="{{ old('no_hp', $user->no_hp) }}"
                     class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500" required>
             </div>

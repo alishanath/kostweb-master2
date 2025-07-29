@@ -78,14 +78,14 @@
 <body>
     <div class="container">
         <div class="success-icon">✓</div>
-        <h1>Booking Kamar Kos Berhasil!</h1>
-        <p>Pendaftaran booking kamar kos Anda telah berhasil. Silakan tunggu konfirmasi dari admin yang akan dikirimkan
-            melalui email anda.</p>
+        <h1>Booking Kamar Kost Berhasil!</h1>
+        <p> Pendaftaran booking kamar kost Anda telah berhasil. 
+            Silakan tunggu konfirmasi dari admin yang akan dikirimkan melalui email anda.
+        </p>
 
         <p
             style="background-color: #fff3cd; color: #856404; padding: 12px 16px; border-radius: 6px; border: 1px solid #ffeeba; margin-bottom: 24px;">
-            <strong>Perhatian:</strong> Biasanya konfirmasi akan diterima dalam waktu 1x24 jam. Mohon periksa inbox atau
-            folder spam email Anda.
+            <strong>Perhatian:</strong> Biasanya konfirmasi akan diterima dalam waktu 1x24 jam. Mohon periksa inbox atau folder spam email Anda.
         </p>
 
         <a href="{{ route('user.listroom') }}" class="cta-button">Kembali ke Daftar Booking</a>

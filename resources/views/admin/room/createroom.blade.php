@@ -87,7 +87,7 @@
                 <select name="kapasitas" id="kapasitas" required
                     class="w-full border rounded px-3 py-2 @error('kapasitas') border-red-500 @enderror">
                     <option value="">Pilih Kapasitas</option>
-                    @for ($i = 1; $i <= 5; $i++)
+                    @for ($i = 1; $i <= 2; $i++)
                         <option value="{{ $i }}"
                             {{ old('kapasitas', $kamar->kapasitas ?? '') == $i ? 'selected' : '' }}>
                             {{ $i }} Orang

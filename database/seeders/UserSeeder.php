@@ -16,11 +16,11 @@ class UserSeeder extends Seeder
     {
         User::create([
             'name' => 'Admin Utama',
-            'email' => 'admin@example.com',
+            'email' => 'adminkost@gmail.com',
             'username' => 'admin',
-            'tanggal_lahir' => '2000-01-01',
-            'no_hp' => '081234567890',
-            'alamat' => 'Jl. Admin No. 1',
+            'tanggal_lahir' => '2001-06-20',
+            'no_hp' => '089630433177',
+            'alamat' => 'Jl. Sunan Kalijaga No. 21',
             'role' => 'admin',
             'password' => Hash::make('12345678'), // Ganti dengan password aman!
         ]);
