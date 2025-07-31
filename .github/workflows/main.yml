@@ -1,0 +1,43 @@
+name: Deploy Laravel on Main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script_stop: true
+          script: |
+            cd /home/iboot/web/kostweb-master2
+
+            sudo chown -R iboot:iboot .
+
+            git fetch origin
+            git reset --hard origin/main
+
+            composer install --no-dev --optimize-autoloader
+            npm install
+            npm run build
+
+            php artisan config:clear
+            php artisan cache:clear
+            php artisan migrate --force
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+
+            # Set correct permissions
+            sudo chown -R www-data:www-data storage bootstrap/cache
+            sudo chmod -R 775 storage bootstrap/cache
+
+            echo "✅ Deployment finished at $(date)"
