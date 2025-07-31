@@ -284,7 +284,7 @@
                                 <div class="col-md-6">
                                     <label for="tipe_pembayaran" class="form-label">Tipe Pembayaran</label>
                                     <select class="form-select" id="tipe_pembayaran" name="tipe_pembayaran" required>
-                                        <option value="bulanan" selected>Bulanan</option>
+                                        <option value="Bulanan" selected>Bulanan</option>
                                         <option value="Mingguan">Mingguan</option>
                                     </select>
                                 </div>
