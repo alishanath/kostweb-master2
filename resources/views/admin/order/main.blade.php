@@ -44,6 +44,8 @@
                     <tr>
                         <th class="px-6 py-3 text-left font-semibold tracking-wide uppercase border-b border-gray-300">No
                         </th>
+                        <th class="px-6 py-3 text-left font-semibold tracking-wide uppercase border-b border-gray-300">Kode
+                            Booking</th>
                         <th class="px-6 py-3 text-left font-semibold tracking-wide uppercase border-b border-gray-300">Nama
                             Penghuni</th>
                         <th class="px-6 py-3 text-left font-semibold tracking-wide uppercase border-b border-gray-300">No
@@ -63,9 +65,10 @@
                     @forelse ($pemesanan as $index => $pesanan)
                         <tr class="border-b hover:bg-gray-50 transition-colors duration-200">
                             <td class="px-6 py-4">{{ $index + 1 }}</td>
+                            <td class="px-6 py-4">{{ $pesanan->kode_booking }}</td>
                             <td class="px-6 py-4">{{ $pesanan->penghuni->nama_lengkap ?? $pesanan->penghuni->name }}</td>
                             <td class="px-6 py-4">{{ $pesanan->kamar->no_kamar ?? '-' }}</td>
-                            <td class="px-6 py-4">{{ $pesanan->tanggal_sewa }}</td>
+                            <td class="px-6 py-4">{{ \Carbon\Carbon::parse($pesanan->tanggal_sewa)->format('d-m-Y') }}</td>
                             <td class="px-6 py-4">
                                 @if ($pesanan->bukti_pembayaran)
                                     <a href="{{ asset('storage/' . $pesanan->bukti_pembayaran) }}" target="_blank"

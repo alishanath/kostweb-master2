@@ -21,7 +21,7 @@
     <div class="flex">
         <!-- Sidebar -->
         <div class="w-1/5 bg-white h-screen p-5 shadow-md fixed ">
-            <h2 class="font-bold text-xl mb-5">🏠 Kost Putri Alifa Purwokerto</h2>
+            <h2 class="font-bold text-xl mb-5">🏠 Kost Putri Alfia Purwokerto</h2>
             <ul>
                 <li class="mb-2">
                     <a href="{{ route('dashboard') }}"
@@ -76,18 +76,7 @@
         <div class="flex-1 ml-[20%] p-10">
             <div class="flex justify-between items-center mb-5">
                 <h1 class="text-3xl font-bold mb-8 text-start">@yield('title')</h1>
-                <!-- Icon Notifikasi -->
-                <div class="relative">
-                    <button class="text-gray-600 hover:text-gray-800 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0a3.001 3.001 0 01-6 0m6 0H9" />
-                        </svg>
-                    </button>
-                    <!-- Notifikasi Badge -->
-                    <span class="absolute top-0 right-0 inline-block w-2 h-2 bg-red-800 rounded-full"></span>
-                </div>
+
             </div>
 
             @yield('content')

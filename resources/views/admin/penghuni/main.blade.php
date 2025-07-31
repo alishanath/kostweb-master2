@@ -44,6 +44,7 @@
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Email</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Tanggal Lahir</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Alamat</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">KTP</th>
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Aksi</th>
                     </tr>
                 </thead>
@@ -61,10 +62,21 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center space-x-2">
+                                    @if ($user->ktp)
+                                        <a href="{{ asset('storage/' . $user->ktp) }}" target="_blank"
+                                            class="text-blue-600 hover:underline">Lihat KTP</a>
+                                    @else
+                                        <span class="text-gray-500">Tidak ada KTP</span>
+                                    @endif
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="flex items-center space-x-2">
                                     @include('admin.penghuni.edit-penghuni')
                                     @include('admin.penghuni.hapus-penghuni')
                                 </div>
                             </td>
+
                         </tr>
                     @endforeach
                 </tbody>

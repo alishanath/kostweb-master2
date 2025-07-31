@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\KelolaKamar;
+use App\Models\User;
 
 class KelolaNotifikasi extends Model
 {
@@ -23,4 +25,10 @@ class KelolaNotifikasi extends Model
     {
         return $this->belongsTo(KelolaKamar::class, 'nomor_kamar', 'no_kamar');
     }
+
+   public function penghuni()
+    {
+        return $this->belongsTo(User::class, 'penghuni_id');
+    }
+
 }

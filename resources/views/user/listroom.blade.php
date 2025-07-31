@@ -63,7 +63,7 @@
                         <label for="priceRange" class="form-label">Harga Maksimal</label>
                         <div class="input-group">
                             <input type="number" class="form-control" id="priceRange" placeholder="Contoh: 1500000">
-                            <span class="input-group-text">/bulan</span>
+                            <span class="input-group-text">/Bulan</span>
                         </div>
                     </div>
                 </form>
@@ -99,7 +99,7 @@
                             <div class="mb-3">
                                 <div class="d-flex align-items-center text-muted mb-2">
                                     <i class="fas fa-home me-2"></i>
-                                    <span>Kosan Putri</span>
+                                    <span>Fasilitas Kamar</span>
                                 </div>
 
                                 <div class="d-flex flex-wrap">

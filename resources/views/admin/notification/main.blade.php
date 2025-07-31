@@ -15,40 +15,65 @@
                             Penghuni</th>
                         <th class="px-6 py-3 text-left font-semibold tracking-wide uppercase border-b border-gray-300">No
                             Kamar</th>
-                        <th class="px-6 py-3 text-left font-semibold tracking-wide uppercase border-b border-gray-300">
-                            Email</th>
+                        <th class="px-6 py-3 text-left font-semibold tracking-wide uppercase border-b border-gray-300">Email
+                        </th>
+                        <th class="px-6 py-3 text-left font-semibold tracking-wide uppercase border-b border-gray-300">Tipe
+                            Pembayaran</th>
                         <th class="px-6 py-3 text-left font-semibold tracking-wide uppercase border-b border-gray-300">
                             Tanggal Sewa</th>
                         <th class="px-6 py-3 text-left font-semibold tracking-wide uppercase border-b border-gray-300">Jatuh
-                            Tempo
-                        </th>
+                            Tempo</th>
+                        <th class="px-6 py-3 text-left font-semibold tracking-wide uppercase border-b border-gray-300">Total
+                            Tagihan</th>
                         <th class="px-6 py-3 text-left font-semibold tracking-wide uppercase border-b border-gray-300">Aksi
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="border-b hover:bg-gray-50 transition-colors duration-200">
-                        <td class="px-6 py-4">1</td>
-                        <td class="px-6 py-4">John Doe</td>
-                        <td class="px-6 py-4">Kamar 12</td>
-                        <td class="px-6 py-4">2025-05-01</td>
-                        <td class="px-6 py-4">
-                            <a href="#" class="text-blue-600 hover:underline">Lihat Bukti</a>
-                        </td>
-                        <td class="px-6 py-4">
-                            <span
-                                class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">Lunas</span>
-                        </td>
-                        <td class="px-6 py-4 space-x-2">
-                            {{-- @include('admin.penghuni.edit-penghuni')
-                            @include('admin.penghuni.hapus-penghuni') --}}
-                        </td>
-                    </tr>
+                    @forelse ($notifikasi as $index => $item)
+                        <tr class="border-b hover:bg-gray-50 transition-colors duration-200">
+                            <td class="px-6 py-4">{{ $index + $notifikasi->firstItem() }}</td>
+                            <td class="px-6 py-4">{{ $item->penghuni->nama_lengkap ?? ($item->penghuni->name ?? '-') }}</td>
+                            <td class="px-6 py-4">{{ $item->kamar->no_kamar ?? '-' }}</td>
+                            <td class="px-6 py-4">{{ $item->penghuni->email ?? '-' }}</td>
+                            <td class="px-6 py-4">{{ ucwords ($item->tipe_pembayaran) ?? '-' }}</td>
+                            <td class="px-6 py-4">{{ \Carbon\Carbon::parse($item->tanggal_sewa)->format('d-m-Y') }}</td>
+                            <td class="px-6 py-4">
+                                @php
+                                    $tanggalSewa = \Carbon\Carbon::parse($item->tanggal_sewa);
+                                    $tipe = strtolower(trim($item->tipe_pembayaran));
+
+                                    if (strtolower ($tipe) === 'bulanan') {
+                                        $jatuhTempo = $tanggalSewa->copy()->addDays(30);
+                                    } elseif (strtolower ($tipe) === 'mingguan') {
+                                        $jatuhTempo = $tanggalSewa->copy()->addDays(7);
+                                    } else {
+                                        $jatuhTempo = $tanggalSewa;
+                                    }
+                                @endphp
+                                {{ $jatuhTempo->format('d-m-Y') }}
+                            </td>
+                            <td class="px-6 py-4">{{ $item->total_pembayaran ?? '-' }}</td>
+                            <td class="px-6 py-4 space-x-2">
+                                @include('admin.notification.email')
+                            </td>
+
+
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="7" class="text-center py-4 text-gray-500">Tidak ada notifikasi.</td>
+                        </tr>
+                    @endforelse
+
                 </tbody>
             </table>
+
+            {{-- Pagination --}}
+            <div class="mt-4">
+                {{ $notifikasi->links() }}
+            </div>
         </div>
     </div>
-
-
 
 @endsection

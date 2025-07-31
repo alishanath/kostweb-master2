@@ -8,7 +8,7 @@
                 <div class="carousel-item active">
                     <div class="hero" style="background-image: url('/images/image1.jpg');">
                         <h1>Nyaman, Aman, Serasa di Rumah!</h1>
-                        <p>Rasakan kemudahan pemesanan dan pembayaran secara online</p>
+                        <p>Rasakan kemudahan pemesanan dan pembayaran secara digital</p>
                         <a href="#room" class="btn btn-lg btn-success rounded-pill shadow-sm px-4 py-2"
                             style="background-color: #28a745; border-color: #28a745;"
                             onmouseover="this.style.backgroundColor='#218838';"
@@ -61,17 +61,17 @@
                     <h2>Kenyamanan Anda adalah Prioritas Kami</h2>
                     <p>
                         Kost Putri Alfia Purwokerto adalah tempat tinggal nyaman untuk perempuan yang berlokasi strategis di
-                        Jalan Sokaraja IV.
+                        Jl. Sokabaru IV No. 24, RT.002/RW.004, Kel. Berkoh, Kec. Purwokerto Selatan, Kab. Banyumas, Jawa Tengah.
+                    </p>
+                    <p>
                         Kost ini menyediakan fasilitas lengkap, seperti kamar dengan pilihan kamar mandi dalam atau luar,
-                        garasi, Wi-Fi,
-                        dapur bersama, dan area jemuran, sehingga cocok untuk mahasiswa dan pekerja.
+                        garasi, Wi-Fi, dapur bersama, dan area jemuran, sehingga cocok untuk mahasiswa dan pekerja.
                     </p>
                     <p>
                         Dengan sistem manajemen berbasis website, penghuni dapat dengan mudah memesan kamar dan melakukan
-                        pembayaran secara digital,
-                        membuat tinggal di kost ini menjadi lebih praktis dan teratur.
+                        pembayaran secara digital, membuat tinggal di kost ini menjadi lebih praktis dan teratur.
                     </p>
-                    <a href="#contact" class="btn btn-outline-success">Get in touch</a>
+                    <a href="#contact" class="btn btn-outline-success">Hubungi Kami</a>
                 </div>
                 <div class="col-md-6">
                     <img src="/images/Tampak Depan Rumah (Angle 1).jpg" alt="Kost Putri Alfia" class="img-fluid rounded">
@@ -123,14 +123,13 @@
                                 <div class="mb-3">
                                     <div class="d-flex align-items-center text-muted mb-2">
                                         <i class="fas fa-home me-2"></i>
-                                        <span>Kosan Putri</span>
+                                        <span>Fasilitas Kamar</span>
                                     </div>
 
                                     <div class="d-flex flex-wrap">
                                         @foreach (explode(',', $kamar->fasilitas) as $fasilitas)
                                             <span class="badge bg-primary-light text-primary facility-badge me-1 mb-1">
                                                 <i class="fas fa-check me-1"></i>{{ trim($fasilitas) }}
-
                                             </span>
                                         @endforeach
                                     </div>
@@ -158,14 +157,14 @@
                 <!-- Form Kontak -->
                 <div class="col-md-6">
                     <h5 class="text-success">HUBUNGI KAMI</h5>
-                    <h2>Kami di sini untuk Membantu Anda!</h2>
+                    <h2>Kami Siap Membantu Anda!</h2>
                     <div class="mt-3">
-                        <p><i class="bi bi-envelope"></i> alishanath@gmail.com</p>
-                        <p><i class="bi bi-telephone"></i> +62 812 3456 7890</p>
-                        <h5>Location</h5>
-                        <p>Jl. Sokaraja IV, Purwokerto, Indonesia</p>
-                        <h5>Hours</h5>
-                        <p>Monday - Sunday: 8:00am - 8:00pm</p>
+                        <p><i class="bi bi-envelope"></i> alfiakostpurwokerto@gmail.com</p>
+                        <p><i class="bi bi-telephone"></i> +62 896 3043 3177</p>
+                        <h5>Lokasi</h5>
+                        <p>Jl. Sokabaru IV No. 24, RT.002/RW.004, Kel. Berkoh, Kec. Purwokerto Selatan, Kab. Banyumas, Jawa Tengah</p>
+                        <h5>Jam Operasional</h5>
+                        <p>Senin - Minggu : 8:00 WIB - 21:00 WIB</p>
                     </div>
                 </div>
                 <!-- Informasi Lokasi -->
