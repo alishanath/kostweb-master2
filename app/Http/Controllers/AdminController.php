@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 
 
@@ -39,15 +40,40 @@ class AdminController extends Controller
         $recentActivities = KelolaKamar::latest()->take(10)->get();
 
         // Menampilkan data ke view
-        return view('admin.dashboard', compact(
-            'totalRooms',
-            'occupiedRooms',
-            'availableRooms',
-            'maintenanceRooms',
-            'availabilityPercentage',
-            'recentActivities'
-        ));
+        $tahun = Carbon::now()->year;
+
+    $pendapatan = DB::table('kelola_pemesanan')
+        ->select(
+            DB::raw('MONTH(tanggal_sewa) as bulan'),
+            DB::raw('SUM(total_pembayaran) as total')
+        )
+        ->whereYear('tanggal_sewa', $tahun)
+        ->where('status', 'Diterima')
+        ->groupBy(DB::raw('MONTH(tanggal_sewa)'))
+        ->pluck('total', 'bulan')
+        ->toArray();
+
+    // Buat array 12 bulan (Jan - Des)
+    $dataPendapatan = [];
+    for ($i = 1; $i <= 12; $i++) {
+        $dataPendapatan[] = isset($pendapatan[$i]) ? (float) $pendapatan[$i] : 0;
     }
+
+    // Jika belum ada tabel biaya, pakai dummy (ganti jika ada tabel pengeluaran)
+    $dataBiaya = [10, 12, 15, 18, 20, 22, 25, 23, 20, 22, 25, 28];
+
+    // Kirim semua data ke view
+    return view('admin.dashboard', compact(
+        'totalRooms',
+        'occupiedRooms',
+        'availableRooms',
+        'maintenanceRooms',
+        'availabilityPercentage',
+        'recentActivities',
+        'dataPendapatan',
+        'dataBiaya'
+    ));
+}
 
     // Kelola Kamar
     public function indexKamar(Request $request)
