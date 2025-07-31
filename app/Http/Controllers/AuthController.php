@@ -376,7 +376,6 @@ class AuthController extends Controller
             return redirect()->route('auth.user.login')
                 ->with('success', 'Password berhasil diubah. Silakan login dengan password baru Anda.');
         }
-
         return back()->withErrors(['email' => __($status)]);
     }
 

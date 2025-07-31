@@ -36,16 +36,16 @@
                             <td class="px-6 py-4">{{ $item->penghuni->nama_lengkap ?? ($item->penghuni->name ?? '-') }}</td>
                             <td class="px-6 py-4">{{ $item->kamar->no_kamar ?? '-' }}</td>
                             <td class="px-6 py-4">{{ $item->penghuni->email ?? '-' }}</td>
-                            <td class="px-6 py-4">{{ $item->tipe_pembayaran ?? '-' }}</td>
+                            <td class="px-6 py-4">{{ ucwords ($item->tipe_pembayaran) ?? '-' }}</td>
                             <td class="px-6 py-4">{{ \Carbon\Carbon::parse($item->tanggal_sewa)->format('d-m-Y') }}</td>
                             <td class="px-6 py-4">
                                 @php
                                     $tanggalSewa = \Carbon\Carbon::parse($item->tanggal_sewa);
                                     $tipe = strtolower(trim($item->tipe_pembayaran));
 
-                                    if ($tipe === 'bulanan') {
+                                    if (strtolower ($tipe) === 'bulanan') {
                                         $jatuhTempo = $tanggalSewa->copy()->addDays(30);
-                                    } elseif ($tipe === 'Mingguan') {
+                                    } elseif (strtolower ($tipe) === 'mingguan') {
                                         $jatuhTempo = $tanggalSewa->copy()->addDays(7);
                                     } else {
                                         $jatuhTempo = $tanggalSewa;
