@@ -141,12 +141,12 @@
             </div>
 
 
-            {{-- tipe pembayaran bulanan dan Mingguan --}}
+            {{-- tipe pembayaran Bulanan dan Mingguan --}}
             <div class="mb-4">
                 <label for="tipe_pembayaran" class="block text-sm font-medium text-gray-700">Tipe Pembayaran</label>
                 <select name="tipe_pembayaran" id="tipe_pembayaran" required class="w-full border rounded px-3 py-2">
-                    <option value="bulanan"
-                        {{ old('tipe_pembayaran', $pesanan->tipe_pembayaran) == 'bulanan' ? 'selected' : '' }}>
+                    <option value="Bulanan"
+                        {{ old('tipe_pembayaran', $pesanan->tipe_pembayaran) == 'Bulanan' ? 'selected' : '' }}>
                         Bulanan</option>
                     <option value="Mingguan"
                         {{ old('tipe_pembayaran', $pesanan->tipe_pembayaran) == 'Mingguan' ? 'selected' : '' }}>
@@ -330,13 +330,13 @@
                 let total = 0;
 
                 if (fasilitas.includes('dalam')) {
-                    if (tipePembayaran === 'bulanan') {
+                    if (tipePembayaran === 'Bulanan') {
                         total = hargaDb + (jumlahPenghuni > 1 ? 100000 : 0);
                     } else { // mingguan
                         total = 175000 + (jumlahPenghuni > 1 ? 100000 : 0);
                     }
                 } else if (fasilitas.includes('luar')) {
-                    if (tipePembayaran === 'bulanan') {
+                    if (tipePembayaran === 'Bulanan') {
                         total = hargaDb + (jumlahPenghuni > 1 ? 100000 : 0);
                     } else { // mingguan
                         total = 150000 + (jumlahPenghuni > 1 ? 100000 : 0);

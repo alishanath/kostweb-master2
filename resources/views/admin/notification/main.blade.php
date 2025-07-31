@@ -43,7 +43,7 @@
                                     $tanggalSewa = \Carbon\Carbon::parse($item->tanggal_sewa);
                                     $tipe = strtolower(trim($item->tipe_pembayaran));
 
-                                    if ($tipe === 'Bulanan') {
+                                    if ($tipe === 'bulanan') {
                                         $jatuhTempo = $tanggalSewa->copy()->addDays(30);
                                     } elseif ($tipe === 'Mingguan') {
                                         $jatuhTempo = $tanggalSewa->copy()->addDays(7);

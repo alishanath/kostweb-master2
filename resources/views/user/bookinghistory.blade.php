@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>History Booking Kamar Kos</title>
+    <title>History Booking Kamar Kost</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         :root {
@@ -146,7 +146,7 @@
                 <h3 class="text-primary">
                     <i class="fas fa-calendar-alt me-2"></i>History Booking
                 </h3>
-                <p class="text-muted">Riwayat pemesanan kamar kos Anda</p>
+                <p class="text-muted">Riwayat pemesanan kamar kost Anda</p>
             </div>
             <div class="col-md-6 text-end">
                 <a href="{{ route('user.home') }}" class="btn btn-outline-primary">

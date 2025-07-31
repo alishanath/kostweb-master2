@@ -4,7 +4,7 @@
     Halo {{ $notifikasi->penghuni->name ?? 'Penghuni' }},
 
     Pembayaran sewa kamar {{ $notifikasi->kamar->no_kamar ?? '-' }} akan jatuh tempo pada tanggal:
-    {{ \Carbon\Carbon::parse($notifikasi->tanggal_sewa)->addDays($notifikasi->tipe_pembayaran === 'bulanan' ? 30 : 7)->format('d-m-Y') }}
+    {{ \Carbon\Carbon::parse($notifikasi->tanggal_sewa)->addDays($notifikasi->tipe_pembayaran === 'Bulanan' ? 30 : 7)->format('d-m-Y') }}
 
     Total tagihan:
     Rp {{ number_format($notifikasi->total_pembayaran, 0, ',', '.') }}
