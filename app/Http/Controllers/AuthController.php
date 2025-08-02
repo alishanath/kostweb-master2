@@ -309,8 +309,8 @@ class AuthController extends Controller
     //     $room = $booking->kamar;
 
     //     $bankAccounts = [
-    //         ['bank' => 'BCA', 'number' => '1234567890', 'name' => 'PT Kost Alifia'],
-    //         ['bank' => 'Mandiri', 'number' => '0987654321', 'name' => 'PT Kost Alifia'],
+    //         ['bank' => 'BCA', 'number' => '1234567890', 'name' => 'PT Kost Putri Alfia Purwokerto'],
+    //         ['bank' => 'Mandiri', 'number' => '0987654321', 'name' => 'PT Kost Putri Alfia Purwokerto'],
     //     ];
 
     //     return view('user.bookingconfirmation', compact('booking', 'room', 'bankAccounts'));

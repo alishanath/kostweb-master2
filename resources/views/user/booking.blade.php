@@ -284,7 +284,7 @@
                                 <div class="col-md-6">
                                     <label for="tipe_pembayaran" class="form-label">Tipe Pembayaran</label>
                                     <select class="form-select" id="tipe_pembayaran" name="tipe_pembayaran" required>
-                                        <option value="bulanan" selected>Bulanan</option>
+                                        <option value="Bulanan" selected>Bulanan</option>
                                         <option value="Mingguan">Mingguan</option>
                                     </select>
                                 </div>
@@ -518,13 +518,13 @@
                 let harga = 0;
 
                 if (fasilitas.includes('kamar mandi dalam')) {
-                    if (tipePembayaran === 'bulanan') {
+                    if (tipePembayaran === 'Bulanan') {
                         harga = hargaDatabase + (jmlPenghuni === 2 ? 100000 : 0);
                     } else if (tipePembayaran === 'Mingguan') {
                         harga = (jmlPenghuni === 1) ? 175000 : 175000 + 100000;
                     }
                 } else if (fasilitas.includes('kamar mandi luar')) {
-                    if (tipePembayaran === 'bulanan') {
+                    if (tipePembayaran === 'Bulanan') {
                         harga = hargaDatabase + (jmlPenghuni === 2 ? 100000 : 0);
                     } else if (tipePembayaran === 'Mingguan') {
                         harga = (jmlPenghuni === 1) ? 150000 : 150000 + 100000;

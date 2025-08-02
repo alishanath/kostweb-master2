@@ -25,7 +25,7 @@ class ReminderSewa extends Mailable
      */
     public function build()
     {
-        return $this->subject('Pengingat Pembayaran Kost Putri Alifia')
+        return $this->subject('Pengingat Pembayaran Kost Putri Alfia Purwokerto')
             ->markdown('emails.reminder')
             ->with([
                 'notifikasi' => $this->notifikasi

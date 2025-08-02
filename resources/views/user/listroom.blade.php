@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List Kamar Kos</title>
+    <title>List Kamar Kost</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome untuk icon -->
@@ -42,7 +42,7 @@
 
 <body>
     <div class="container py-5">
-        <h1 class="text-center mb-5">Daftar Kamar Kos Alifia</h1>
+        <h1 class="text-center mb-5">Daftar Kamar Kost Alfia Purwokerto</h1>
 
         <!-- Filter Section -->
         <div class="card mb-5">
