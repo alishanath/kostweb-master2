@@ -58,6 +58,14 @@
                 @enderror
             </div>
 
+            <div class="mb-3">
+                    <label>Upload KTP (wajib diisi)</label>
+                    <input type="file" name="ktp" class="form-control" accept="image/*" required>
+                    @error('ktp')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
             <div class="flex justify-end space-x-2">
                 <button type="button" id="closeModalBtn"
                     class="bg-gray-300 text-gray-700 px-4 py-2 rounded-full hover:bg-gray-400">Batal</button>

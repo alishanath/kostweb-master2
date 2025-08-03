@@ -79,11 +79,11 @@ class AdminController extends Controller
     public function indexKamar(Request $request)
     {
         $query = KelolaKamar::query();
-
+        
         if ($request->filled('search')) {
             $query->where(function ($q) use ($request) {
-                $q->where('no_kamar', 'like', '%' . $request->search . '%')
-                  ->orWhere('deskripsi_kamar', 'like', '%' . $request->search . '%');
+                $q->whereAny(['no_kamar','deskripsi_kamar', 'harga', 'fasilitas', 'kapasitas'], 'like', '%' . $request->search . '%');
+                
             });
         }
 
@@ -455,6 +455,7 @@ class AdminController extends Controller
             'no_hp'          => 'required|string|max:20|unique:users,no_hp',
             'tanggal_lahir'  => 'required|date',
             'alamat'         => 'required|string',
+            'ktp'            => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ], [
             'email.unique'  => 'Email sudah terdaftar. Gunakan email lain.',
             'no_hp.unique'  => 'Nomor HP sudah digunakan. Gunakan nomor lain.',
@@ -476,6 +477,7 @@ class AdminController extends Controller
                 'alamat'         => $validated['alamat'],
                 'role'           => 'user',
                 'password'       => bcrypt('12345678'), // default password
+                'ktp'            => $request->file('ktp')->store('ktp', 'public'),
             ]);
 
 
