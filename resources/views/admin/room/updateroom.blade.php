@@ -215,10 +215,28 @@
                 // Set checkbox fasilitas yang aktif
                 fasilitasArray.forEach(f => {
                     if (f) {
-                        const checkbox = document.querySelector(`input[name="fasilitas[]"][value="${f.trim()}"]`);
-                        if (checkbox) {
-                            checkbox.checked = true;
-                        }
+                        
+const fasilitasMap = {
+    'Kamar Mandi Dalam': 'edit_fasilitas1',
+    'Kamar Mandi Luar': 'edit_fasilitas2',
+    'Jendela': 'edit_fasilitas3',
+    'Kasur': 'edit_fasilitas4',
+    'Bantal': 'edit_fasilitas5',
+    'Lemari': 'edit_fasilitas6',
+    'Laci': 'edit_fasilitas7',
+    'Rak Sepatu': 'edit_fasilitas8',
+    'Kipas Angin': 'edit_fasilitas9',
+    'Wifi': 'edit_fasilitas10',
+};
+
+const id = fasilitasMap[f];
+if (id) {
+    const element = document.getElementById(id);
+    if (element) {
+        element.checked = true;
+    }
+}
+
                     }
                 });
             }
