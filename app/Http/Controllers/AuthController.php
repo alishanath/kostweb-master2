@@ -18,7 +18,7 @@ use Termwind\Components\Dd;
 class AuthController extends Controller
 {
     public function index(){
-        $rooms = KelolaKamar::where('status', 'available')->take(3)->get();
+        $rooms = KelolaKamar::where('status', 'available')->take(4)->get();
         return view('user.home', compact('rooms'));
 
     }

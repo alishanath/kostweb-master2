@@ -45,17 +45,14 @@ Route::middleware(['auth'])->group(function() {
 
 });
 
-// Payment route
-Route::get('/payment', [PaymentController::class, 'createTransaction']);
-Route::post('/payment/process', [PaymentController::class, 'process'])->name('payment.process');
 
 // Admin routes
 Route::get('/admin', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('login.admin');
 Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
-
-Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+Route::middleware(['authadmin'])->group(function() {
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
 // Room management
 Route::get('/admin/kamar', [AdminController::class, 'indexKamar'])->name('kamar');
@@ -86,3 +83,6 @@ Route::get('/admin/penghuni/edit/{id}', [AdminController::class, 'editPenghuni']
 Route::post('/admin/penghuni/update/{id}', [AdminController::class, 'updatePenghuni'])->name('penghuni.update');
 
 Route::delete('/admin/penghuni/destroy/{id}', [AdminController::class, 'destroyPenghuni'])->name('penghuni.destroy');
+
+});
+

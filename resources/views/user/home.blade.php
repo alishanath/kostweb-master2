@@ -15,18 +15,32 @@
                             onmouseout="this.style.backgroundColor='#28a745';">
                             <i class="fas fa-door-open me-2"></i>Lihat Kamar
                         </a>
+                        <a href="/listroom" class="btn btn-lg btn-primary rounded-pill shadow-sm px-4 py-2"
+                            style="background-color: #28a7a7ff; border-color: #28a7a7ff;"
+                            onmouseover="this.style.backgroundColor='#28a7a7ff';"
+                            onmouseout="this.style.backgroundColor='#28a7a7ff';">
+                            <i class="fas fa-door-open me-2"></i>Seluruh Kamar
+                        </a>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="hero" style="background-image: url('/images/image2.jpg');">
                         <h1>Tempat yang Nyaman</h1>
                         <p>Kost dengan fasilitas lengkap dan harga terjangkau</p>
-                        <a href="#room" class="btn btn-lg btn-success rounded-pill shadow-sm px-4 py-2"
+                        <div>
+                            <a href="#room" class="btn btn-lg btn-success rounded-pill shadow-sm px-4 py-2"
                             style="background-color: #28a745; border-color: #28a745;"
                             onmouseover="this.style.backgroundColor='#218838';"
                             onmouseout="this.style.backgroundColor='#28a745';">
                             <i class="fas fa-bed me-2"></i>Lihat Kamar
                         </a>
+                        <a href="/listroom" class="btn btn-lg btn-primary rounded-pill shadow-sm px-4 py-2"
+                            style="background-color: #28a7a7ff; border-color: #28a7a7ff;"
+                            onmouseover="this.style.backgroundColor='#28a7a7ff';"
+                            onmouseout="this.style.backgroundColor='#28a7a7ff';">
+                            <i class="fas fa-door-open me-2"></i>Seluruh Kamar
+                        </a>
+                        </div>
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -38,6 +52,13 @@
                             onmouseover="this.style.backgroundColor='#218838';"
                             onmouseout="this.style.backgroundColor='#28a745';">
                             <i class="fas fa-map-marker-alt me-2"></i>Lihat Kamar
+                        </a>
+                        <br>
+                        <a href="/listroom" class="btn btn-lg btn-primary rounded-pill shadow-sm px-4 py-2"
+                            style="background-color: #28a7a7ff; border-color: #28a7a7ff;"
+                            onmouseover="this.style.backgroundColor='#28a7a7ff';"
+                            onmouseout="this.style.backgroundColor='#28a7a7ff';">
+                            <i class="fas fa-door-open me-2"></i>Seluruh Kamar
                         </a>
                     </div>
                 </div>
