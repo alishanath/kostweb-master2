@@ -70,7 +70,7 @@ class AuthController extends Controller
             'alamat' => 'required|string|max:255',
             'tanggal_lahir' => 'required|date',
             'password' => 'required|string|min:6|confirmed',
-            'ktp' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'ktp' => 'required|image|mimes:jpeg,png,jpg,gif|max:9216',
         ]);
 
         // Automatically set the role to 'user' for new registrations

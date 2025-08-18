@@ -13,6 +13,7 @@ use App\Http\Controllers\NotifikasiController;
 Route::get('/', [AuthController::class, 'index'])->name('user.home');
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.user.login');
+Route::get('/loginn', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('auth.user.register');
 Route::post('/register', [AuthController::class, 'register']);

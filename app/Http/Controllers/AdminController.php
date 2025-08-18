@@ -150,7 +150,6 @@ class AdminController extends Controller
             'harga' => 'required|numeric|min:100000',
             'deskripsi_kamar' => 'required|string|max:500',
             'fasilitas' => 'nullable|array', // Changed to nullable
-            'fasilitas.*' => 'string|in:AC,WiFi,TV,Kulkas,kipas',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'status' => 'required|in:available,booked', // Added maintenance option
             'kapasitas' => 'required|string|max:50', // Validate kapasitas
@@ -160,7 +159,6 @@ class AdminController extends Controller
         DB::beginTransaction();
         try {
             $kamar = KelolaKamar::findOrFail($id);
-
             // Handle image upload
             if ($request->hasFile('gambar')) {
                 // Delete old image if exists
@@ -170,11 +168,7 @@ class AdminController extends Controller
                 $validated['gambar'] = $request->file('gambar')->store('kamar', 'public');
             }
 
-            // Handle fasilitas - only update if provided
-            if (isset($validated['fasilitas'])) {
-                $kamar->fasilitas = implode(',', $validated['fasilitas']);
-                unset($validated['fasilitas']);
-            }
+            $validated['fasilitas']=implode(',', $validated['fasilitas']);
 
             // Update other fields
             $kamar->update($validated);
