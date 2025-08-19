@@ -15,12 +15,6 @@
                             onmouseout="this.style.backgroundColor='#28a745';">
                             <i class="fas fa-door-open me-2"></i>Lihat Kamar
                         </a>
-                        <a href="/listroom" class="btn btn-lg btn-primary rounded-pill shadow-sm px-4 py-2"
-                            style="background-color: #28a7a7ff; border-color: #28a7a7ff;"
-                            onmouseover="this.style.backgroundColor='#28a7a7ff';"
-                            onmouseout="this.style.backgroundColor='#28a7a7ff';">
-                            <i class="fas fa-door-open me-2"></i>Seluruh Kamar
-                        </a>
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -34,12 +28,6 @@
                             onmouseout="this.style.backgroundColor='#28a745';">
                             <i class="fas fa-bed me-2"></i>Lihat Kamar
                         </a>
-                        <a href="/listroom" class="btn btn-lg btn-primary rounded-pill shadow-sm px-4 py-2"
-                            style="background-color: #28a7a7ff; border-color: #28a7a7ff;"
-                            onmouseover="this.style.backgroundColor='#28a7a7ff';"
-                            onmouseout="this.style.backgroundColor='#28a7a7ff';">
-                            <i class="fas fa-door-open me-2"></i>Seluruh Kamar
-                        </a>
                         </div>
                     </div>
                 </div>
@@ -52,13 +40,6 @@
                             onmouseover="this.style.backgroundColor='#218838';"
                             onmouseout="this.style.backgroundColor='#28a745';">
                             <i class="fas fa-map-marker-alt me-2"></i>Lihat Kamar
-                        </a>
-                        <br>
-                        <a href="/listroom" class="btn btn-lg btn-primary rounded-pill shadow-sm px-4 py-2"
-                            style="background-color: #28a7a7ff; border-color: #28a7a7ff;"
-                            onmouseover="this.style.backgroundColor='#28a7a7ff';"
-                            onmouseout="this.style.backgroundColor='#28a7a7ff';">
-                            <i class="fas fa-door-open me-2"></i>Seluruh Kamar
                         </a>
                     </div>
                 </div>
@@ -117,7 +98,7 @@
                         Selengkapnya &rarr;
                     </a>
                 </div>
-                @foreach ($rooms->take(3) as $kamar)
+                @foreach ($rooms->take(4) as $kamar)
                     <div class="col-md-4 mb-4">
                         <div class="card room-card h-100">
                             <div class="position-relative">
