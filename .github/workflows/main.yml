@@ -36,8 +36,10 @@ jobs:
             php artisan route:cache
             php artisan view:cache
 
-            # Set correct permissions
-            sudo chown -R www-data:www-data storage bootstrap/cache
-            sudo chmod -R 775 storage bootstrap/cache
+            sudo chmod -R 777 /home/iboot/web/kostweb-master2/storage
+            sudo chmod -R 777 /home/iboot/web/kostweb-master2/bootstrap/cache
+
+            sudo systemctl restart php8.4-fpm
+            sudo systemctl restart nginx
 
             echo "✅ Deployment finished at $(date)"
