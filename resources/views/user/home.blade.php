@@ -89,7 +89,7 @@
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <div>
                         <h5 class="text-success">PILIH KAMAR SESUAI KEBUTUHAN ANDA</h5>
-                        <h2>Pemesanan dan pembayaran Kamar Secara Online Yang Mudah!</h2>
+                        <h2>Pemesanan dan Pembayaran Kamar Secara Online Yang Mudah!</h2>
                     </div>
                     <a href="{{ route('user.listroom') }}" class="btn btn-outline-success rounded-pill"
                         style="border-color: #28a745;"
