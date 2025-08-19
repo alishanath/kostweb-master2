@@ -98,7 +98,7 @@
                         Selengkapnya &rarr;
                     </a>
                 </div>
-                @foreach ($rooms->take(4) as $kamar)
+                @foreach ($rooms->take(3) as $kamar)
                     <div class="col-md-4 mb-4">
                         <div class="card room-card h-100">
                             <div class="position-relative">
