@@ -151,7 +151,7 @@ class AdminController extends Controller
             'deskripsi_kamar' => 'required|string|max:500',
             'fasilitas' => 'nullable|array', // Changed to nullable
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'status' => 'required|in:available,booked', // Added maintenance option
+            'status' => 'required|in:available,booked,occupied', // Added maintenance option
             'kapasitas' => 'required|string|max:50', // Validate kapasitas
 
         ]);
