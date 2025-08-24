@@ -269,7 +269,7 @@ class AdminController extends Controller
                     ->orderBy('name')
                     ->get();
 
-        $kamars = KelolaKamar::where('status', 'available')
+        $kamars = KelolaKamar::where('status', 'booked')
                     ->orderBy('no_kamar')
                     ->get();
 
