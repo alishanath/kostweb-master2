@@ -201,9 +201,7 @@ class AuthController extends Controller
         }
 
         $booking = KelolaPemesanan::create($data);
-        $kamar = KelolaKamar::find($request->room_id);
-        $kamar->status='booked';
-        $kamar->save;
+        KelolaKamar::where('id', $request->room_id)->update(['status' => 'booked']);
 
         return redirect()->route('user.bookingconfirmation', ['bookingId' => $booking->id])
                         ->with('success', 'Booking berhasil dibuat.');
