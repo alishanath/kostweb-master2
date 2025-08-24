@@ -116,6 +116,7 @@
                     required>
                     <option value="available">Available</option>
                     <option value="booked">Booked</option>
+                    <option value="occupied">Occupied</option>
                 </select>
             </div>
 
