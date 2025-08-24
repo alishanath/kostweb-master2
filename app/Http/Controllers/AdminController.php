@@ -388,10 +388,12 @@ class AdminController extends Controller
 
             // ✅ Update status kamar baru
             if ($validated['status'] === 'Diterima') {
-                KelolaKamar::where('id', $validated['kamar_id'])->update(['status' => 'booked']);
+                KelolaKamar::where('id', $validated['kamar_id'])->update(['status' => 'occupied']);
             } elseif ($validated['status'] === 'Ditolak') {
                 KelolaKamar::where('id', $validated['kamar_id'])->update(['status' => 'available']);
-            }
+            } elseif ($validated['status'] === 'Menunggu') {
+                KelolaKamar::where('id', $validated['kamar_id'])->update(['status' => 'booked']);
+            } 
 
             DB::commit();
 
