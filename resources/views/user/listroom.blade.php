@@ -86,6 +86,7 @@
                             <span
                                 class="position-absolute top-0 end-0 mt-3 mr-2s badge
                                 {{ $kamar->status == 'available' ? 'bg-success' : 'bg-danger' }}
+                                {{ $kamar->status == 'available' ? 'bg-success' : ($kamar->status == 'occupied' ? 'bg-danger' : 'bg-warning') }}
                                 text-white px-3 py-1 rounded-pill">
                                 {{ $kamar->status == 'available' ? 'Tersedia' : ($kamar->status == 'occupied' ? 'Sedang Ditempati' : 'Booked') }}
                             </span>
