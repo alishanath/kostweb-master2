@@ -118,10 +118,9 @@
                                         {{ $kamar->status == 'occupied' ? 'cursor-not-allowed opacity-50' : '' }}
                                         {{ $kamar->status == 'booked' ? 'cursor-not-allowed opacity-50' : '' }}"
                                 id="kamar-{{ $kamar->id }}"
-                                {{ $kamar->status == 'booked' ? 'onclick="event.preventDefault();"' : '' }}>
+                                data-status="{{ $kamar->status }}">
                                 <i class="fas fa-eye me-2"></i>Lihat Detail
                             </a>
-
                         </div>
                     </div>
                 </div>
@@ -194,18 +193,22 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Mengambil semua tombol kamar
-            const kamarButton = document.querySelectorAll('.btn');
+            const kamarButtons = document.querySelectorAll('.btn');
 
-            kamarButton.forEach(button => {
-                // Cek jika tombol memiliki class 'cursor-not-allowed'
-                if (button.classList.contains('cursor-not-allowed')) {
-                    // Cegah link di-click
-                    button.addEventListener('click', function(event) {
-                        event.preventDefault(); // Cegah aksi klik
-                        alert('Kamar sudah dibooking!');
-                    });
-                }
+            kamarButtons.forEach(button => {
+                const status = button.getAttribute("data-status");
+
+                button.addEventListener('click', function(event) {
+                    if (status === "occupied") {
+                        event.preventDefault();
+                        alert("Kamar sudah ditempati!");
+                    } 
+                    else if (status === "booked") {
+                        event.preventDefault();
+                        alert("Kamar sudah dibooking!");
+                    } 
+                    // untuk status available tidak dicegah, tetap bisa klik link
+                });
             });
         });
 
@@ -254,16 +257,7 @@
             // Event listener untuk input harga (opsional)
             document.getElementById('priceRange').addEventListener('input', filterRooms);
 
-            // Fungsi untuk menangani kamar yang sudah dibooking
-            const kamarButtons = document.querySelectorAll('.btn');
-            kamarButtons.forEach(button => {
-                if (button.classList.contains('cursor-not-allowed')) {
-                    button.addEventListener('click', function(event) {
-                        event.preventDefault();
-                        alert('Kamar sudah dibooking/terisi!');
-                    });
-                }
-            });
+            
         });
     </script>
 </body>
