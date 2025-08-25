@@ -87,7 +87,7 @@
                                 class="position-absolute top-0 end-0 mt-3 mr-2s badge
                                 {{ $kamar->status == 'available' ? 'bg-success' : ($kamar->status == 'occupied' ? 'bg-danger' : 'bg-warning') }}
                                 text-white px-3 py-1 rounded-pill">
-                                {{ $kamar->status == 'available' ? 'Tersedia' : ($kamar->status == 'occupied' ? 'Sedang Ditempati' : 'Booked') }}
+                                {{ $kamar->status == 'available' ? 'Tersedia' : ($kamar->status == 'occupied' ? 'Occupied' : 'Booked') }}
                             </span>
                         </div>
                         <div class="card-body d-flex flex-column">
@@ -115,6 +115,7 @@
                             <a href="{{ $kamar->status == 'booked' ? '#' : route('user.detailroom', $kamar->id) }}"
                                 class="btn mt-auto
                                         {{ $kamar->status == 'available' ? 'btn-success' : 'btn-secondary' }}
+                                        {{ $kamar->status == 'occupied' ? 'cursor-not-allowed opacity-50' : '' }}
                                         {{ $kamar->status == 'booked' ? 'cursor-not-allowed opacity-50' : '' }}"
                                 id="kamar-{{ $kamar->id }}"
                                 {{ $kamar->status == 'booked' ? 'onclick="event.preventDefault();"' : '' }}>
@@ -259,7 +260,7 @@
                 if (button.classList.contains('cursor-not-allowed')) {
                     button.addEventListener('click', function(event) {
                         event.preventDefault();
-                        alert('Kamar sudah dibooking!');
+                        alert('Kamar sudah dibooking/terisi!');
                     });
                 }
             });
