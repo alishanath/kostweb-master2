@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <div class="hero" style="background-image: url('/images/image3.jpg');">
+                    <div class="hero" style="background-image: url('/images/tampak depan-2.jpg');">
                         <h1>Lokasi Strategis</h1>
                         <p>Dekat dengan pusat kota dan fasilitas umum</p>
                         <a href="#room" class="btn btn-lg btn-success rounded-pill shadow-sm px-4 py-2"
@@ -76,7 +76,7 @@
                     <a href="#contact" class="btn btn-outline-success">Hubungi Kami</a>
                 </div>
                 <div class="col-md-6">
-                    <img src="/images/Tampak Depan Rumah (Angle 1).jpg" alt="Kost Putri Alfia" class="img-fluid rounded">
+                    <img src="/images/tampak depan-1.jpg" alt="Kost Putri Alfia" class="img-fluid rounded">
                 </div>
             </div>
         </div>
