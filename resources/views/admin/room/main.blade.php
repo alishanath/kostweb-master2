@@ -125,7 +125,7 @@
                                 @elseif($item->status == 'occupied')
                                     <span
                                         class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                        Terisi
+                                        Occupied
                                     </span>
                                 @endif
                             </td>
