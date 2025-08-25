@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <div class="hero" style="background-image: url('/images/image2.jpg');">
+                    <div class="hero" style="background-image: url('/images/Tampak Kost Kamar 1 (Angle 3).jpg');">
                         <h1>Tempat yang Nyaman</h1>
                         <p>Kost dengan fasilitas lengkap dan harga terjangkau</p>
                         <div>
