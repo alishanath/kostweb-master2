@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <div class="hero" style="background-image: url('/images/tampak depan-2.jpg');">
+                    <div class="hero" style="background-image: url('/images/tampak depan-3.png');">
                         <h1>Lokasi Strategis</h1>
                         <p>Dekat dengan pusat kota dan fasilitas umum</p>
                         <a href="#room" class="btn btn-lg btn-success rounded-pill shadow-sm px-4 py-2"
